@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sara & Willis - Enter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                180deg,
+                #B8D4E3 0%,
+                #F5EDE0 30%,
+                #E6C9B8 60%,
+                #D4A5A5 80%,
+                #C2654A 100%
+            );
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 10% 90%, #C2654A 0%, transparent 50%),
+                radial-gradient(ellipse 60% 80% at 90% 70%, #D4A254 0%, transparent 40%),
+                radial-gradient(ellipse 40% 40% at 85% 20%, #93E9BE 0%, transparent 50%),
+                radial-gradient(ellipse 50% 60% at 5% 30%, #D4A5A5 0%, transparent 45%);
+            opacity: 0.6;
+        }
+
+        .login-page::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 80% 15%, #D4A254 0%, #D4A254 8%, transparent 8.5%),
+                radial-gradient(circle at 80% 15%, #E8DCC4 10%, transparent 15%),
+                radial-gradient(ellipse 120% 30% at 50% 100%, #A0522D 0%, transparent 60%);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .login-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-title .sara {
+            color: #93E9BE;
+            text-shadow:
+                2px 2px 0px #ffd700,
+                4px 4px 0px #ff1493;
+            display: inline-block;
+            animation: gentle-bounce 3s infinite ease-in-out;
+        }
+
+        .login-title .amp {
+            color: #8b7355;
+            font-family: 'Georgia', serif;
+            font-size: 3rem;
+            margin: 0 0.5rem;
+        }
+
+        .login-title .willis {
+            color: #C2654A;
+            text-shadow:
+                2px 2px 0px #D4A254,
+                4px 4px 0px #A0522D;
+            display: inline-block;
+            animation: gentle-bounce 3s infinite ease-in-out 0.5s;
+        }
+
+        @keyframes gentle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .login-subtitle {
+            font-size: 1.3rem;
+            color: #8b7355;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-prompt {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-hint {
+            font-size: 0.95rem;
+            color: #999;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: 3px solid #E8DCC4;
+            border-radius: 50px;
+            text-align: center;
+            font-family: 'Georgia', serif;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .password-input:focus {
+            border-color: #93E9BE;
+            box-shadow: 0 0 20px rgba(147, 233, 190, 0.4);
+        }
+
+        .password-input.error {
+            border-color: #C2654A;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+
+        .enter-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            background: linear-gradient(135deg, #93E9BE 0%, #7dd4a8 100%);
+            color: #333;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: 'Georgia', serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(147, 233, 190, 0.5);
+        }
+
+        .error-message {
+            color: #C2654A;
+            margin-top: 1rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error-message.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .login-title {
+                font-size: 2.5rem;
+            }
+            .login-title .amp {
+                font-size: 2rem;
+            }
+            .login-box {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-container">
+            <h1 class="login-title">
+                <span class="sara">Sara</span>
+                <span class="amp">&</span>
+                <span class="willis">Willis</span>
+            </h1>
+            <p class="login-subtitle">Are Getting Married!</p>
+
+            <div class="login-box">
+                <p class="login-prompt">Enter the secret password to view our wedding details</p>
+                <p class="login-hint">Hint: Ocean loving creature</p>
+
+                <form id="loginForm">
+                    <input
+                        type="text"
+                        id="password"
+                        class="password-input"
+                        placeholder="Enter password..."
+                        autocomplete="off"
+                        autofocus
+                    >
+                    <button type="submit" class="enter-btn">Enter</button>
+                </form>
+
+                <p id="errorMsg" class="error-message">Hmm, that's not quite right. Try again!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PASSWORD = 'kai';
+        const STORAGE_KEY = 'sara_willis_wedding_auth';
+
+        // Check if already authenticated
+        if (sessionStorage.getItem(STORAGE_KEY) === 'true') {
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const input = document.getElementById('password');
+            const errorMsg = document.getElementById('errorMsg');
+            const enteredPassword = input.value.toLowerCase().trim();
+
+            if (enteredPassword === PASSWORD) {
+                // Store authentication
+                sessionStorage.setItem(STORAGE_KEY, 'true');
+                // Redirect to main site
+                window.location.href = 'index.html';
+            } else {
+                // Show error
+                input.classList.add('error');
+                errorMsg.classList.add('show');
+
+                // Reset after animation
+                setTimeout(() => {
+                    input.classList.remove('error');
+                }, 500);
+
+                // Clear input
+                input.value = '';
+                input.focus();
+            }
+        });
+
+        // Clear error when typing
+        document.getElementById('password').addEventListener('input', function() {
+            document.getElementById('errorMsg').classList.remove('show');
+        });
+    </script>
+</body>
+</html>

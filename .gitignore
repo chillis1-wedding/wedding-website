@@ -1,0 +1,20 @@
+# Environment variables (contains API key - DO NOT COMMIT!)
+.env
+
+# Node modules
+node_modules/
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor directories
+.vscode/
+.idea/

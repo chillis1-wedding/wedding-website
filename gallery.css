@@ -1,0 +1,337 @@
+/* Gallery Page Styles - Vintage Slide Projector */
+
+.gallery-header {
+    background: linear-gradient(
+        180deg,
+        var(--desert-cream) 0%,
+        var(--desert-sand) 100%
+    );
+    padding: 3rem 0 2rem;
+    text-align: center;
+}
+
+.gallery-header h1 {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+.gallery-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Projector Section */
+.projector-section {
+    padding: 3rem 0 5rem;
+    background: linear-gradient(
+        180deg,
+        var(--desert-sand) 0%,
+        #2a2a2a 30%,
+        #1a1a1a 100%
+    );
+    min-height: calc(100vh - 250px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.projector-container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Projector Screen - Vintage frame look */
+.projector-screen {
+    perspective: 1500px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.screen-frame {
+    position: relative;
+    background: #f5f0e6;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow:
+        0 0 0 15px #8b7355,
+        0 0 0 20px #6b5344,
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 100px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+}
+
+/* The slide stack - where the magic happens */
+.slide-stack {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    aspect-ratio: 4/3;
+    background: #1a1a1a;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Individual slides */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(100%) rotateY(-15deg);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
+    backface-visibility: hidden;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #1a1a1a;
+}
+
+/* Slide states */
+.slide.active {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg);
+    z-index: 10;
+}
+
+.slide.prev {
+    opacity: 0.3;
+    transform: translateX(-30%) rotateY(15deg) scale(0.9);
+    z-index: 5;
+}
+
+.slide.behind {
+    opacity: 0;
+    transform: translateX(100%) rotateY(-15deg);
+    z-index: 1;
+}
+
+.slide.exiting {
+    opacity: 0;
+    transform: translateX(-100%) rotateY(25deg) scale(0.8);
+    z-index: 15;
+}
+
+.slide.entering {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg);
+    z-index: 10;
+}
+
+/* Projector light effect */
+.slide-stack::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 60%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+    pointer-events: none;
+    z-index: 20;
+}
+
+/* Slide click sound effect - visual indicator */
+.slide-stack.clicking::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: click-flash 0.3s ease-out;
+    z-index: 25;
+    pointer-events: none;
+}
+
+@keyframes click-flash {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Photo counter */
+.photo-counter {
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+    background: var(--desert-terracotta);
+    color: var(--white);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+}
+
+/* Projector Navigation Buttons - on sides */
+.projector-btn {
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(145deg, #4a4a4a, #2a2a2a);
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.projector-btn:hover {
+    background: linear-gradient(145deg, #5a5a5a, #3a3a3a);
+    transform: scale(1.05);
+}
+
+.projector-btn:active {
+    transform: scale(0.95);
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.projector-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.projector-btn:disabled:hover {
+    transform: none;
+    background: linear-gradient(145deg, #4a4a4a, #2a2a2a);
+}
+
+.projector-click-indicator {
+    color: var(--desert-sand);
+    font-style: italic;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Vintage film grain overlay */
+.screen-frame::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    border-radius: 4px;
+    z-index: 30;
+    mix-blend-mode: overlay;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .gallery-header h1 {
+        font-size: 2rem;
+    }
+
+    .gallery-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .projector-container {
+        gap: 1rem;
+    }
+
+    .screen-frame {
+        padding: 10px;
+        box-shadow:
+            0 0 0 8px #8b7355,
+            0 0 0 12px #6b5344,
+            0 15px 40px rgba(0, 0, 0, 0.5),
+            inset 0 0 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .projector-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    .btn-icon {
+        font-size: 1.2rem;
+    }
+
+    .photo-counter {
+        bottom: -40px;
+        font-size: 0.8rem;
+        padding: 6px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .projector-section {
+        padding: 2rem 0 3rem;
+    }
+
+    .projector-container {
+        gap: 0.5rem;
+    }
+
+    .projector-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-icon {
+        font-size: 1rem;
+    }
+
+    .screen-frame {
+        padding: 8px;
+        box-shadow:
+            0 0 0 5px #8b7355,
+            0 0 0 8px #6b5344,
+            0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* Keyboard hint */
+.keyboard-hint {
+    text-align: center;
+    color: var(--desert-sand);
+    opacity: 0.5;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+}

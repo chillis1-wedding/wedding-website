@@ -19,123 +19,164 @@
             overflow: hidden;
         }
 
-        /* Floating Kais! */
+        /* STAR WARS STYLE - Kais flying past! */
         .floating-kai {
             position: absolute;
-            width: 120px;
-            height: 120px;
             object-fit: contain;
             z-index: 0;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.3));
             pointer-events: none;
         }
 
+        /* Each Kai starts tiny in center and zooms out in different directions */
         .kai-1 {
-            top: 5%;
-            left: 8%;
-            animation: kai-float-1 6s ease-in-out infinite, kai-spin 12s linear infinite;
+            top: 50%;
+            left: 50%;
+            animation: kai-zoom-topleft 4s linear infinite;
         }
         .kai-2 {
-            top: 15%;
-            right: 10%;
-            width: 100px;
-            height: 100px;
-            animation: kai-float-2 5s ease-in-out infinite 0.5s, kai-spin-reverse 10s linear infinite;
+            top: 50%;
+            left: 50%;
+            animation: kai-zoom-topright 5s linear infinite 0.7s;
         }
         .kai-3 {
-            bottom: 20%;
-            left: 5%;
-            width: 90px;
-            height: 90px;
-            animation: kai-float-3 7s ease-in-out infinite 1s, kai-wobble 3s ease-in-out infinite;
+            top: 50%;
+            left: 50%;
+            animation: kai-zoom-left 3.5s linear infinite 1.4s;
         }
         .kai-4 {
-            bottom: 10%;
-            right: 8%;
-            width: 130px;
-            height: 130px;
-            animation: kai-float-4 5.5s ease-in-out infinite 0.3s, kai-spin 15s linear infinite reverse;
+            top: 50%;
+            left: 50%;
+            animation: kai-zoom-right 4.5s linear infinite 2.1s;
         }
         .kai-5 {
-            top: 45%;
-            left: 3%;
-            width: 80px;
-            height: 80px;
-            animation: kai-float-5 6.5s ease-in-out infinite 0.8s, kai-bounce 2s ease-in-out infinite;
+            top: 50%;
+            left: 50%;
+            animation: kai-zoom-bottomleft 3.8s linear infinite 2.8s;
         }
         .kai-6 {
             top: 50%;
-            right: 3%;
-            width: 110px;
-            height: 110px;
-            animation: kai-float-6 5s ease-in-out infinite 1.2s, kai-spin-reverse 8s linear infinite;
+            left: 50%;
+            animation: kai-zoom-bottomright 4.2s linear infinite 3.5s;
         }
         .kai-7 {
-            bottom: 35%;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 70px;
-            animation: kai-float-7 4s ease-in-out infinite 0.2s, kai-crazy-spin 4s linear infinite;
-            z-index: 0;
+            animation: kai-zoom-top 3.2s linear infinite 0.3s;
         }
 
-        @keyframes kai-float-1 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(20px, 30px) rotate(10deg); }
-            50% { transform: translate(-10px, 50px) rotate(-5deg); }
-            75% { transform: translate(30px, 20px) rotate(15deg); }
+        /* Zoom animations - start tiny at center, zoom past camera */
+        @keyframes kai-zoom-topleft {
+            0% {
+                transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-250%, -300%) scale(3) rotate(360deg);
+                opacity: 0;
+            }
         }
-        @keyframes kai-float-2 {
-            0%, 100% { transform: translate(0, 0); }
-            33% { transform: translate(-30px, 40px); }
-            66% { transform: translate(20px, 60px); }
+        @keyframes kai-zoom-topright {
+            0% {
+                transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(150%, -350%) scale(2.5) rotate(-270deg);
+                opacity: 0;
+            }
         }
-        @keyframes kai-float-3 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(40px, -30px) scale(1.1); }
+        @keyframes kai-zoom-left {
+            0% {
+                transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-400%, 50%) scale(3.5) rotate(180deg);
+                opacity: 0;
+            }
         }
-        @keyframes kai-float-4 {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(-25px, -35px); }
-            50% { transform: translate(-50px, 10px); }
-            75% { transform: translate(-20px, -20px); }
+        @keyframes kai-zoom-right {
+            0% {
+                transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(300%, -20%) scale(4) rotate(-360deg);
+                opacity: 0;
+            }
         }
-        @keyframes kai-float-5 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(35px, -25px); }
+        @keyframes kai-zoom-bottomleft {
+            0% {
+                transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-300%, 250%) scale(2.8) rotate(450deg);
+                opacity: 0;
+            }
         }
-        @keyframes kai-float-6 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-40px, 30px) scale(0.9); }
-            66% { transform: translate(-20px, -20px) scale(1.05); }
+        @keyframes kai-zoom-bottomright {
+            0% {
+                transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(250%, 300%) scale(3.2) rotate(-540deg);
+                opacity: 0;
+            }
         }
-        @keyframes kai-float-7 {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-80px); }
-        }
-        @keyframes kai-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        @keyframes kai-spin-reverse {
-            from { transform: rotate(360deg); }
-            to { transform: rotate(0deg); }
-        }
-        @keyframes kai-wobble {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-        @keyframes kai-bounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.1); }
-        }
-        @keyframes kai-crazy-spin {
-            0% { transform: translateX(-50%) rotate(0deg) scale(1); }
-            25% { transform: translateX(-50%) rotate(90deg) scale(1.2); }
-            50% { transform: translateX(-50%) rotate(180deg) scale(0.8); }
-            75% { transform: translateX(-50%) rotate(270deg) scale(1.1); }
-            100% { transform: translateX(-50%) rotate(360deg) scale(1); }
+        @keyframes kai-zoom-top {
+            0% {
+                transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -400%) scale(2) rotate(720deg);
+                opacity: 0;
+            }
         }
 
         .login-container {
@@ -317,18 +358,6 @@
             }
             .login-box {
                 padding: 2rem 1.5rem;
-            }
-            .floating-kai {
-                width: 80px;
-                height: 80px;
-            }
-            .kai-2, .kai-4, .kai-6 {
-                width: 70px;
-                height: 70px;
-            }
-            .kai-3, .kai-5, .kai-7 {
-                width: 60px;
-                height: 60px;
             }
             .password-required-banner {
                 font-size: 1.1rem;

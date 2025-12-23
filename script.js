@@ -1,6 +1,6 @@
 // Google Sheets Web App URL - You'll need to set this up
 // Instructions are in the README.md file
-const GOOGLE_SHEETS_URL = 'YOUR_GOOGLE_SHEETS_WEB_APP_URL_HERE';
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwiXlSJ_vWXEIWnbza6z-9bpaGqhmSI1btaHg9Fa8vM56xLkMQ-6R1sYhXrtbN7EQEBQA/exec';
 
 document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -44,6 +44,7 @@ document.getElementById('rsvpForm').addEventListener('submit', async function(e)
         // Show success message
         formMessage.textContent = 'Thank you! Your RSVP has been submitted successfully.';
         formMessage.className = 'form-message success';
+        formMessage.style.display = 'block';
 
         // Reset form
         this.reset();
@@ -52,6 +53,7 @@ document.getElementById('rsvpForm').addEventListener('submit', async function(e)
         console.error('Error:', error);
         formMessage.textContent = error.message || 'Sorry, there was an error submitting your RSVP. Please try again or contact us directly.';
         formMessage.className = 'form-message error';
+        formMessage.style.display = 'block';
     } finally {
         // Re-enable button
         submitBtn.disabled = false;

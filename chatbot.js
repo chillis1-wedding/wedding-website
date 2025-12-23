@@ -9,8 +9,8 @@ const chatbotMessages = document.getElementById('chatbot-messages');
 // Store conversation history
 let conversationHistory = [];
 
-// API endpoint
-const API_URL = 'http://localhost:3000/api/chat';
+// API endpoint - uses relative URL for Vercel deployment
+const API_URL = '/api/chat';
 
 // Toggle chatbot window
 chatbotToggle.addEventListener('click', () => {

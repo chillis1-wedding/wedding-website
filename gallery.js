@@ -1,4 +1,4 @@
-// Vintage Slide Projector Gallery
+// Stacking Slider Gallery
 
 // List of all photos (in order)
 const photos = [
@@ -31,50 +31,28 @@ const nextButton = document.querySelector('.projector-btn.next');
 
 // Initialize gallery
 function initGallery() {
-    // Set total photos
     totalPhotosSpan.textContent = photos.length;
-
-    // Generate all slides
     generateSlides();
-
-    // Set initial state
     updateSlideStates();
 
-    // Add event listeners
     prevButton.addEventListener('click', showPrevious);
     nextButton.addEventListener('click', showNext);
-
-    // Click on slide stack to advance
     slideStack.addEventListener('click', showNext);
 
     // Keyboard navigation
     document.addEventListener('keydown', handleKeyPress);
 
-    // Touch/swipe support for mobile
+    // Touch/swipe support
     let touchStartX = 0;
-    let touchEndX = 0;
-
     slideStack.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
     });
-
     slideStack.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
+        const touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 50) showNext();
+        if (touchEndX > touchStartX + 50) showPrevious();
     });
 
-    function handleSwipe() {
-        if (touchEndX < touchStartX - 50) {
-            // Swipe left - next photo
-            showNext();
-        }
-        if (touchEndX > touchStartX + 50) {
-            // Swipe right - previous photo
-            showPrevious();
-        }
-    }
-
-    // Update button states
     updateButtonStates();
 }
 
@@ -94,99 +72,74 @@ function generateSlides() {
     });
 }
 
-// Update slide states based on current index
+// Update slide states - stacking effect
 function updateSlideStates() {
     const slides = document.querySelectorAll('.slide');
 
     slides.forEach((slide, index) => {
         // Remove all state classes
-        slide.classList.remove('active', 'prev', 'behind', 'exiting', 'entering');
+        slide.classList.remove('active', 'stack-1', 'stack-2', 'stack-3', 'hidden', 'exiting', 'entering');
 
-        if (index === currentIndex) {
+        const diff = index - currentIndex;
+
+        if (diff === 0) {
+            // Current slide - front
             slide.classList.add('active');
-        } else if (index === currentIndex - 1) {
-            slide.classList.add('prev');
-        } else if (index < currentIndex) {
-            slide.classList.add('prev');
-            slide.style.opacity = '0';
+        } else if (diff === 1) {
+            // Next slide - slightly behind
+            slide.classList.add('stack-1');
+        } else if (diff === 2) {
+            // Two behind
+            slide.classList.add('stack-2');
+        } else if (diff === 3) {
+            // Three behind
+            slide.classList.add('stack-3');
+        } else if (diff > 3) {
+            // Far behind - hidden
+            slide.classList.add('hidden');
         } else {
-            slide.classList.add('behind');
+            // Already viewed - hidden to left
+            slide.classList.add('hidden');
         }
     });
 
-    // Update counter
     currentPhotoSpan.textContent = currentIndex + 1;
 }
 
-// Show previous photo with projector animation
+// Show previous photo
 function showPrevious() {
     if (currentIndex <= 0 || isTransitioning) return;
 
     isTransitioning = true;
-    addClickEffect();
-
-    const slides = document.querySelectorAll('.slide');
-    const currentSlide = slides[currentIndex];
-    const prevSlide = slides[currentIndex - 1];
-
-    // Current slide moves back into the stack
-    currentSlide.classList.remove('active');
-    currentSlide.classList.add('behind');
-
-    // Previous slide comes back
-    prevSlide.style.opacity = '';
-    prevSlide.classList.remove('prev');
-    prevSlide.classList.add('entering');
-
     currentIndex--;
 
+    updateSlideStates();
+    updateButtonStates();
+
     setTimeout(() => {
-        prevSlide.classList.remove('entering');
-        prevSlide.classList.add('active');
-        updateSlideStates();
-        updateButtonStates();
         isTransitioning = false;
-    }, 600);
+    }, 500);
 }
 
-// Show next photo with projector animation
+// Show next photo
 function showNext() {
     if (currentIndex >= photos.length - 1 || isTransitioning) return;
 
     isTransitioning = true;
-    addClickEffect();
 
     const slides = document.querySelectorAll('.slide');
     const currentSlide = slides[currentIndex];
-    const nextSlide = slides[currentIndex + 1];
 
-    // Current slide exits to the left (like being pushed off)
-    currentSlide.classList.remove('active');
+    // Animate current slide out to the left
     currentSlide.classList.add('exiting');
-
-    // Next slide comes in
-    nextSlide.classList.remove('behind');
-    nextSlide.classList.add('entering');
-
-    currentIndex++;
 
     setTimeout(() => {
         currentSlide.classList.remove('exiting');
-        currentSlide.classList.add('prev');
-        nextSlide.classList.remove('entering');
-        nextSlide.classList.add('active');
+        currentIndex++;
         updateSlideStates();
         updateButtonStates();
         isTransitioning = false;
-    }, 600);
-}
-
-// Add visual click effect
-function addClickEffect() {
-    slideStack.classList.add('clicking');
-    setTimeout(() => {
-        slideStack.classList.remove('clicking');
-    }, 300);
+    }, 500);
 }
 
 // Update button states

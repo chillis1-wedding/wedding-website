@@ -59,12 +59,37 @@ Sara/
 └── Claude.md           # This file - project notes for future sessions
 ```
 
-## 🚀 How to Run
+## 🚀 Development & Deployment Workflow
+
+**Goal:** Build locally → Push to GitHub → Deploy to Vercel
+
+### Local Development
 ```bash
 cd /Users/willis/Desktop/Sara
 python3 -m http.server 8000
 # Then open http://localhost:8000
 ```
+
+### GitHub Repository
+- **Repo:** https://github.com/chillis1-wedding/wedding-website
+- **Branch:** main
+- **Auth:** SSH key set up, logged in as `chillis1-wedding`
+
+### Push to GitHub
+```bash
+git add .
+git commit -m "Your commit message"
+git push
+```
+
+### Vercel (Live Site)
+- **Live URL:** https://wedding-website-nine-pink.vercel.app/
+- Auto-deploys on every push to GitHub main branch
+- Can add custom domain later in Vercel dashboard
+
+### Known Issues
+- Large image pushes can fail with "inflate" errors (push images individually or in small batches)
+- Photos folder not yet pushed to GitHub - add later when finalized
 
 ## ✅ Completed
 - [x] Basic HTML structure with hero, details, RSVP, footer
@@ -130,7 +155,7 @@ python3 -m http.server 8000
 
 ---
 
-**Last Updated:** October 7, 2025
+**Last Updated:** December 22, 2025
 **Created By:** Claude (with Willis)
 
 Congrats on the engagement! 🎊💍

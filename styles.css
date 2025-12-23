@@ -12,15 +12,23 @@
     --bg-light: #f9f7f4;
     --white: #ffffff;
     --sara-mint: #93E9BE;
-    /* Georgia O'Keeffe Desert Palette */
-    --desert-terracotta: #C2654A;
-    --desert-sand: #E8DCC4;
-    --desert-sky: #B8D4E3;
-    --desert-rose: #D4A5A5;
-    --desert-ochre: #D4A254;
-    --desert-sienna: #A0522D;
-    --desert-cream: #F5EDE0;
-    --desert-dusk: #E6C9B8;
+    /* Georgia O'Keeffe Adobe Palette - Ranchos Church */
+    --adobe-dark: #9B7B6B;
+    --adobe-light: #C9ADA0;
+    --adobe-rose: #D4B8AB;
+    --adobe-cream: #E5D5C8;
+    --sky-lavender: #B8B5C4;
+    --sky-gray: #8E8D9A;
+    --sky-light: #C8C6CF;
+    /* Legacy palette for compatibility */
+    --desert-terracotta: #9B7B6B;
+    --desert-sand: #D4C4B5;
+    --desert-sky: #B8B5C4;
+    --desert-rose: #C9ADA0;
+    --desert-ochre: #B09080;
+    --desert-sienna: #8B6B5B;
+    --desert-cream: #E5D5C8;
+    --desert-dusk: #D4B8AB;
 }
 
 body {
@@ -31,10 +39,11 @@ body {
 
 /* Navigation */
 .main-nav {
-    background: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
+    background: transparent;
+    position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
 }
 
@@ -50,9 +59,15 @@ body {
 .nav-logo {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--secondary-color);
+    color: #ffffff;
     text-decoration: none;
     font-family: 'Palatino', 'Georgia', serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.1) rotate(-3deg);
 }
 
 .nav-links {
@@ -61,34 +76,39 @@ body {
 }
 
 .nav-links a {
-    color: var(--text-dark);
+    color: #ffffff;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
     padding: 0.5rem 1rem;
     border-radius: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .nav-links a:hover {
-    background: var(--primary-color);
-    color: var(--text-dark);
+    transform: scale(1.2) rotate(5deg);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
 }
 
 .nav-links a.active {
-    background: var(--primary-color);
-    color: var(--text-dark);
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
     font-weight: 600;
 }
 
-/* Content Pages - Desert Style */
+/* Content Pages - O'Keeffe Adobe Style */
 .content-page {
     min-height: 70vh;
     padding: 5rem 0;
+    padding-top: 8rem;
     background: linear-gradient(
         180deg,
-        var(--desert-cream) 0%,
-        var(--desert-sand) 50%,
-        var(--desert-dusk) 100%
+        var(--sky-lavender) 0%,
+        var(--sky-light) 15%,
+        var(--adobe-cream) 35%,
+        var(--adobe-rose) 60%,
+        var(--adobe-light) 80%,
+        var(--adobe-dark) 100%
     );
     position: relative;
 }
@@ -101,18 +121,30 @@ body {
     right: 0;
     bottom: 0;
     background-image:
-        radial-gradient(ellipse 60% 40% at 0% 100%, var(--desert-terracotta) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 50% at 100% 80%, var(--desert-rose) 0%, transparent 40%);
-    opacity: 0.2;
+        radial-gradient(ellipse 80% 50% at 20% 90%, var(--adobe-dark) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 85%, var(--adobe-light) 0%, transparent 45%),
+        radial-gradient(ellipse 100% 30% at 50% 0%, var(--sky-gray) 0%, transparent 60%);
+    opacity: 0.3;
     pointer-events: none;
 }
 
 .content-page h1 {
     text-align: center;
     font-size: 3rem;
-    color: var(--secondary-color);
+    color: var(--adobe-dark);
     margin-bottom: 3rem;
     font-weight: 400;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Navigation on content pages */
+.content-page ~ .main-nav,
+body:not(:has(.hero)) .main-nav {
+    background: transparent;
+}
+
+body:has(.content-page) .main-nav {
+    position: absolute;
 }
 
 .content-placeholder {
@@ -143,16 +175,8 @@ body {
     padding: 0 20px;
 }
 
-/* Hero Section - Georgia O'Keeffe Desert Style */
+/* Hero Section - Custom Background */
 .hero {
-    background: linear-gradient(
-        180deg,
-        var(--desert-sky) 0%,
-        var(--desert-cream) 30%,
-        var(--desert-dusk) 60%,
-        var(--desert-rose) 80%,
-        var(--desert-terracotta) 100%
-    );
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -162,33 +186,7 @@ body {
     overflow: hidden;
 }
 
-.hero-fullscreen {
-    height: calc(100vh - 80px);
-    min-height: calc(100vh - 80px);
-}
-
-/* O'Keeffe-inspired abstract shapes */
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image:
-        /* Distant mesa silhouette */
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23A0522D' fill-opacity='0.15' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,218.7C672,235,768,245,864,234.7C960,224,1056,192,1152,181.3C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E"),
-        /* Soft organic circles - like O'Keeffe flowers/sun */
-        radial-gradient(ellipse 80% 50% at 10% 90%, var(--desert-terracotta) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 80% at 90% 70%, var(--desert-ochre) 0%, transparent 40%),
-        radial-gradient(ellipse 40% 40% at 85% 20%, var(--primary-color) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 60% at 5% 30%, var(--desert-rose) 0%, transparent 45%);
-    background-size: 100% 40%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-    background-position: bottom, center, center, center, center;
-    background-repeat: no-repeat;
-}
-
-/* Additional decorative shapes */
+/* Blurred background image */
 .hero::after {
     content: '';
     position: absolute;
@@ -196,15 +194,28 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image:
-        /* Large sun/flower shape top right */
-        radial-gradient(circle at 80% 15%, var(--desert-ochre) 0%, var(--desert-ochre) 8%, transparent 8.5%),
-        radial-gradient(circle at 80% 15%, var(--desert-sand) 10%, transparent 15%),
-        /* Curved hill shapes */
-        radial-gradient(ellipse 120% 30% at 50% 100%, var(--desert-sienna) 0%, transparent 60%),
-        radial-gradient(ellipse 80% 25% at 30% 95%, var(--desert-terracotta) 0%, transparent 50%);
-    opacity: 0.4;
+    background: url('background.png') center center / cover no-repeat;
+    filter: blur(6px);
+    transform: scale(1.1);
+    z-index: -2;
+}
+
+.hero-fullscreen {
+    height: 100vh;
+    min-height: 100vh;
+}
+
+/* Dark overlay for text readability */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
     pointer-events: none;
+    z-index: -1;
 }
 
 /* Georgia O'Keeffe "Cow's Skull: Red, White, and Blue" tribute */
@@ -256,15 +267,25 @@ body {
     75% { transform: rotate(3deg) translateY(-10px) scale(1.05); }
 }
 
+.plus-sign {
+    font-family: 'Georgia', serif;
+    font-size: 4rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    margin: 0 1.5rem 0 2.5rem;
+    vertical-align: middle;
+}
+
 .willis-name {
     font-family: 'Pacifico', cursive;
     font-size: 6rem;
-    color: var(--desert-terracotta);
+    color: #C4836A;
     text-shadow:
-        3px 3px 0px var(--desert-ochre),
-        6px 6px 0px var(--desert-sienna),
-        9px 9px 0px var(--desert-sand),
-        12px 12px 0px var(--desert-rose);
+        3px 3px 0px #D4A088,
+        6px 6px 0px #A67B5B,
+        9px 9px 0px #8B6B5B,
+        12px 12px 0px #BFA094;
     transform: rotate(5deg);
     display: inline-block;
     animation: desert-bounce 2.5s infinite;
@@ -368,18 +389,19 @@ body {
 
 .date {
     font-size: 1.25rem;
-    color: var(--desert-sienna);
+    color: #ffffff;
     font-weight: 600;
     letter-spacing: 1px;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .date .venue {
     font-size: 1.1rem;
-    color: var(--desert-terracotta);
+    color: #ffffff;
     font-weight: 500;
     margin-top: 0.5rem;
     font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 /* Details Section */
@@ -457,11 +479,16 @@ body {
 /* RSVP Section */
 .rsvp {
     padding: 5rem 0;
+    padding-top: 8rem;
+    min-height: 100vh;
     background: linear-gradient(
-        135deg,
-        var(--desert-sand) 0%,
-        var(--desert-cream) 50%,
-        var(--desert-dusk) 100%
+        180deg,
+        var(--sky-lavender) 0%,
+        var(--sky-light) 15%,
+        var(--adobe-cream) 35%,
+        var(--adobe-rose) 60%,
+        var(--adobe-light) 80%,
+        var(--adobe-dark) 100%
     );
     position: relative;
 }
@@ -474,8 +501,8 @@ body {
     right: 0;
     bottom: 0;
     background-image:
-        radial-gradient(ellipse 40% 60% at 100% 0%, var(--primary-color) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 40% at 0% 100%, var(--desert-rose) 0%, transparent 40%);
+        radial-gradient(ellipse 70% 40% at 10% 85%, var(--adobe-dark) 0%, transparent 45%),
+        radial-gradient(ellipse 60% 35% at 90% 90%, var(--adobe-light) 0%, transparent 40%);
     opacity: 0.25;
     pointer-events: none;
 }
@@ -483,9 +510,10 @@ body {
 .rsvp h2 {
     text-align: center;
     font-size: 3rem;
-    color: var(--secondary-color);
+    color: var(--adobe-dark);
     margin-bottom: 1rem;
     font-weight: 400;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .rsvp-subtitle {
@@ -800,10 +828,10 @@ footer p {
 
 .faq-section h2 {
     font-size: 2rem;
-    color: var(--desert-terracotta);
+    color: var(--adobe-dark);
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--desert-sand);
+    border-bottom: 2px solid var(--adobe-light);
 }
 
 .section-intro {
@@ -854,18 +882,18 @@ footer p {
 
 .faq-link {
     display: inline-block;
-    color: var(--desert-terracotta);
+    color: var(--adobe-dark);
     font-weight: 600;
     text-decoration: none;
     padding: 0.5rem 1rem;
-    background: var(--desert-sand);
+    background: var(--adobe-cream);
     border-radius: 25px;
     transition: all 0.3s ease;
     margin-top: 0.5rem;
 }
 
 .faq-link:hover {
-    background: var(--desert-terracotta);
+    background: var(--adobe-dark);
     color: var(--white);
 }
 
@@ -877,7 +905,7 @@ footer p {
 }
 
 .rec-item {
-    background: var(--desert-cream);
+    background: rgba(255, 255, 255, 0.85);
     padding: 1.5rem;
     border-radius: 10px;
     transition: transform 0.3s ease;
@@ -888,7 +916,7 @@ footer p {
 }
 
 .rec-item h4 {
-    color: var(--desert-sienna);
+    color: var(--adobe-dark);
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
 }
@@ -900,7 +928,7 @@ footer p {
 }
 
 .rec-item a {
-    color: var(--desert-terracotta);
+    color: var(--adobe-dark);
     font-weight: 500;
     text-decoration: none;
     font-size: 0.9rem;
@@ -917,7 +945,7 @@ footer p {
 
 .food-list li {
     padding: 0.5rem 0;
-    border-bottom: 1px solid var(--desert-sand);
+    border-bottom: 1px solid var(--adobe-light);
 }
 
 .food-list li:last-child {

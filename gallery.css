@@ -1,45 +1,68 @@
-/* Gallery Page Styles - Vintage Slide Projector */
+/* Gallery Page Styles - Stacking Slider */
+
+/* Full page O'Keeffe background */
+body:has(.gallery-header) {
+    position: relative;
+    overflow-x: hidden;
+}
+
+body:has(.gallery-header)::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('okeeffe-gallery.jpg') center center / cover no-repeat;
+    filter: blur(8px);
+    transform: scale(1.1);
+    z-index: -2;
+}
+
+body:has(.gallery-header)::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
 
 .gallery-header {
-    background: linear-gradient(
-        180deg,
-        var(--desert-cream) 0%,
-        var(--desert-sand) 100%
-    );
-    padding: 3rem 0 2rem;
+    background: transparent;
+    padding: 8rem 0 1rem;
     text-align: center;
 }
 
 .gallery-header h1 {
     font-size: 3rem;
-    color: var(--secondary-color);
+    color: #ffffff;
     margin-bottom: 0.5rem;
     font-weight: 400;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .gallery-subtitle {
     font-size: 1.3rem;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.9);
     font-style: italic;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Projector Section */
+/* Stacking Slider Section */
 .projector-section {
-    padding: 3rem 0 5rem;
-    background: linear-gradient(
-        180deg,
-        var(--desert-sand) 0%,
-        #2a2a2a 30%,
-        #1a1a1a 100%
-    );
-    min-height: calc(100vh - 250px);
+    padding: 2rem 0 4rem;
+    background: transparent;
+    min-height: calc(100vh - 200px);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .projector-container {
-    max-width: 1100px;
+    max-width: 1200px;
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
@@ -49,183 +72,126 @@
     gap: 2rem;
 }
 
-/* Projector Screen - Vintage frame look */
+/* The slide stack container */
 .projector-screen {
-    perspective: 1500px;
+    flex: 1;
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    align-items: center;
+    max-width: 900px;
 }
 
 .screen-frame {
     position: relative;
-    background: #f5f0e6;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow:
-        0 0 0 15px #8b7355,
-        0 0 0 20px #6b5344,
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        inset 0 0 100px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
     width: 100%;
+    max-width: 800px;
 }
 
-/* The slide stack - where the magic happens */
 .slide-stack {
     position: relative;
     width: 100%;
-    min-height: 400px;
     aspect-ratio: 4/3;
-    background: #1a1a1a;
-    overflow: hidden;
-    border-radius: 4px;
     cursor: pointer;
 }
 
-/* Individual slides */
+/* Individual slides - stacked cards effect */
 .slide {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transform: translateX(100%) rotateY(-15deg);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: left center;
-    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .slide img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    background: #1a1a1a;
+    object-fit: cover;
+    display: block;
 }
 
-/* Slide states */
-.slide.active {
-    opacity: 1;
-    transform: translateX(0) rotateY(0deg);
-    z-index: 10;
-}
-
-.slide.prev {
-    opacity: 0.3;
-    transform: translateX(-30%) rotateY(15deg) scale(0.9);
-    z-index: 5;
-}
-
-.slide.behind {
-    opacity: 0;
-    transform: translateX(100%) rotateY(-15deg);
+/* Stacked cards behind - visible on edges */
+.slide.stack-3 {
+    transform: translateX(30px) scale(0.92);
+    opacity: 0.4;
     z-index: 1;
 }
 
-.slide.exiting {
-    opacity: 0;
-    transform: translateX(-100%) rotateY(25deg) scale(0.8);
-    z-index: 15;
+.slide.stack-2 {
+    transform: translateX(15px) scale(0.96);
+    opacity: 0.7;
+    z-index: 2;
 }
 
-.slide.entering {
+.slide.stack-1 {
+    transform: translateX(0) scale(1);
     opacity: 1;
-    transform: translateX(0) rotateY(0deg);
+    z-index: 3;
+}
+
+/* Active slide - front and center */
+.slide.active {
+    transform: translateX(0) scale(1);
+    opacity: 1;
     z-index: 10;
 }
 
-/* Projector light effect */
-.slide-stack::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-        ellipse at center,
-        transparent 60%,
-        rgba(0, 0, 0, 0.3) 100%
-    );
-    pointer-events: none;
-    z-index: 20;
+/* Slide exiting to the left */
+.slide.exiting {
+    transform: translateX(-120%) scale(0.9) rotateY(10deg);
+    opacity: 0;
+    z-index: 15;
 }
 
-/* Slide click sound effect - visual indicator */
-.slide-stack.clicking::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100px;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    animation: click-flash 0.3s ease-out;
-    z-index: 25;
+/* Slide entering from behind */
+.slide.entering {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    z-index: 10;
+}
+
+/* Hidden slides */
+.slide.hidden {
+    opacity: 0;
+    transform: translateX(50px) scale(0.85);
+    z-index: 0;
     pointer-events: none;
 }
 
-@keyframes click-flash {
-    0% {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(2);
-        opacity: 0;
-    }
-}
-
-/* Photo counter */
-.photo-counter {
-    position: absolute;
-    bottom: -50px;
-    right: 0;
-    background: var(--desert-terracotta);
-    color: var(--white);
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    font-family: 'Courier New', monospace;
-}
-
-/* Projector Navigation Buttons - on sides */
+/* Navigation Buttons - clean circles */
 .projector-btn {
     flex-shrink: 0;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: none;
-    background: linear-gradient(145deg, #4a4a4a, #2a2a2a);
-    box-shadow:
-        0 6px 20px rgba(0, 0, 0, 0.4),
-        inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .projector-btn:hover {
-    background: linear-gradient(145deg, #5a5a5a, #3a3a3a);
-    transform: scale(1.05);
+    background: #ffffff;
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
 }
 
 .projector-btn:active {
     transform: scale(0.95);
-    box-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.4),
-        inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .btn-icon {
-    font-size: 1.5rem;
-    color: var(--primary-color);
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1;
 }
 
 .projector-btn:disabled {
@@ -235,34 +201,30 @@
 
 .projector-btn:disabled:hover {
     transform: none;
-    background: linear-gradient(145deg, #4a4a4a, #2a2a2a);
+    background: rgba(255, 255, 255, 0.95);
 }
 
-.projector-click-indicator {
-    color: var(--desert-sand);
-    font-style: italic;
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-
-/* Vintage film grain overlay */
-.screen-frame::after {
-    content: '';
+/* Photo counter - clean minimal */
+.photo-counter {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
-    opacity: 0.03;
-    pointer-events: none;
-    border-radius: 4px;
-    z-index: 30;
-    mix-blend-mode: overlay;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .gallery-header {
+        padding: 6rem 0 1rem;
+    }
+
     .gallery-header h1 {
         font-size: 2rem;
     }
@@ -273,15 +235,7 @@
 
     .projector-container {
         gap: 1rem;
-    }
-
-    .screen-frame {
-        padding: 10px;
-        box-shadow:
-            0 0 0 8px #8b7355,
-            0 0 0 12px #6b5344,
-            0 15px 40px rgba(0, 0, 0, 0.5),
-            inset 0 0 60px rgba(0, 0, 0, 0.1);
+        padding: 0 15px;
     }
 
     .projector-btn {
@@ -290,19 +244,23 @@
     }
 
     .btn-icon {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .photo-counter {
         bottom: -40px;
-        font-size: 0.8rem;
-        padding: 6px 14px;
+        font-size: 0.85rem;
+        padding: 6px 18px;
+    }
+
+    .slide {
+        border-radius: 8px;
     }
 }
 
 @media (max-width: 480px) {
     .projector-section {
-        padding: 2rem 0 3rem;
+        padding: 1rem 0 3rem;
     }
 
     .projector-container {
@@ -310,28 +268,11 @@
     }
 
     .projector-btn {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
     }
 
     .btn-icon {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
-
-    .screen-frame {
-        padding: 8px;
-        box-shadow:
-            0 0 0 5px #8b7355,
-            0 0 0 8px #6b5344,
-            0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-}
-
-/* Keyboard hint */
-.keyboard-hint {
-    text-align: center;
-    color: var(--desert-sand);
-    opacity: 0.5;
-    font-size: 0.8rem;
-    margin-top: 1rem;
 }

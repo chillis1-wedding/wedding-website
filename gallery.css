@@ -1,12 +1,12 @@
 /* Gallery Page Styles - Stacking Slider */
 
 /* Full page O'Keeffe background */
-body:has(.gallery-header) {
+body:has(.projector-section) {
     position: relative;
     overflow-x: hidden;
 }
 
-body:has(.gallery-header)::before {
+body:has(.projector-section)::before {
     content: '';
     position: fixed;
     top: 0;
@@ -19,7 +19,7 @@ body:has(.gallery-header)::before {
     z-index: -2;
 }
 
-body:has(.gallery-header)::after {
+body:has(.projector-section)::after {
     content: '';
     position: fixed;
     top: 0;
@@ -30,32 +30,11 @@ body:has(.gallery-header)::after {
     z-index: -1;
 }
 
-.gallery-header {
-    background: transparent;
-    padding: 8rem 0 1rem;
-    text-align: center;
-}
-
-.gallery-header h1 {
-    font-size: 3rem;
-    color: #ffffff;
-    margin-bottom: 0.5rem;
-    font-weight: 400;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-}
-
-.gallery-subtitle {
-    font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-style: italic;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-}
-
 /* Stacking Slider Section */
 .projector-section {
     padding: 2rem 0 4rem;
     background: transparent;
-    min-height: calc(100vh - 200px);
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,12 +58,14 @@ body:has(.gallery-header)::after {
     justify-content: center;
     align-items: center;
     max-width: 900px;
+    overflow: visible;
 }
 
 .screen-frame {
     position: relative;
     width: 100%;
     max-width: 800px;
+    overflow: visible;
 }
 
 .slide-stack {
@@ -92,6 +73,7 @@ body:has(.gallery-header)::after {
     width: 100%;
     aspect-ratio: 4/3;
     cursor: pointer;
+    overflow: visible;
 }
 
 /* Individual slides - stacked cards effect */
@@ -114,23 +96,42 @@ body:has(.gallery-header)::after {
     display: block;
 }
 
-/* Stacked cards behind - visible on edges */
+/* Stacked cards behind - big slivers peeking on the right (upcoming) */
 .slide.stack-3 {
-    transform: translateX(30px) scale(0.92);
+    transform: translateX(120px) scale(0.85);
     opacity: 0.4;
     z-index: 1;
 }
 
 .slide.stack-2 {
-    transform: translateX(15px) scale(0.96);
-    opacity: 0.7;
+    transform: translateX(80px) scale(0.90);
+    opacity: 0.6;
     z-index: 2;
 }
 
 .slide.stack-1 {
-    transform: translateX(0) scale(1);
-    opacity: 1;
+    transform: translateX(40px) scale(0.95);
+    opacity: 0.8;
     z-index: 3;
+}
+
+/* Previously viewed slides - slivers peeking on the left */
+.slide.prev-1 {
+    transform: translateX(-40px) scale(0.95);
+    opacity: 0.8;
+    z-index: 3;
+}
+
+.slide.prev-2 {
+    transform: translateX(-80px) scale(0.90);
+    opacity: 0.6;
+    z-index: 2;
+}
+
+.slide.prev-3 {
+    transform: translateX(-120px) scale(0.85);
+    opacity: 0.4;
+    z-index: 1;
 }
 
 /* Active slide - front and center */

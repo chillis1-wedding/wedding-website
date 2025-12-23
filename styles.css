@@ -113,6 +113,45 @@ body {
     position: relative;
 }
 
+/* Story page - blurred photo background like gallery */
+.story-page {
+    min-height: 100vh;
+    background: transparent;
+}
+
+body:has(.story-page) {
+    position: relative;
+    overflow-x: hidden;
+}
+
+body:has(.story-page)::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('okeeffe-gallery.jpg') center center / cover no-repeat;
+    filter: blur(8px);
+    transform: scale(1.1);
+    z-index: -2;
+}
+
+body:has(.story-page)::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+body:has(.story-page) .content-page::before {
+    display: none;
+}
+
 .content-page::before {
     content: '';
     position: absolute;

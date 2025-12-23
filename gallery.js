@@ -1,22 +1,15 @@
 // Stacking Slider Gallery
 
-// List of all photos (in order)
+// List of all photos (in order) - compressed WebP format
 const photos = [
-    'photos/49.jpg',
-    'photos/IMG_0410.jpg',
-    'photos/IMG_0724.jpg',
-    'photos/IMG_1502.jpg',
-    'photos/IMG_2871.jpg',
-    'photos/IMG_3047.jpg',
-    'photos/IMG_3129.jpg',
-    'photos/IMG_3900.jpg',
-    'photos/IMG_4443.jpg',
-    'photos/IMG_4746.jpg',
-    'photos/IMG_5897.jpg',
-    'photos/IMG_7462.jpg',
-    'photos/IMG_8099.jpg',
-    'photos/IMG_9584.jpg',
-    'photos/IMG_9918.jpg'
+    'photos/compressed/1_hawaii.webp',
+    'photos/compressed/2_steep_ravine_proposal.webp',
+    'photos/compressed/3_lake_tahoe.webp',
+    'photos/compressed/4_chicago.webp',
+    'photos/compressed/5_lisbon.webp',
+    'photos/compressed/6_china_beach.webp',
+    'photos/compressed/7_germany.webp',
+    'photos/compressed/8_hawaii_waterfall.webp'
 ];
 
 let currentIndex = 0;
@@ -72,13 +65,13 @@ function generateSlides() {
     });
 }
 
-// Update slide states - stacking effect
+// Update slide states - stacking effect with slivers on both sides
 function updateSlideStates() {
     const slides = document.querySelectorAll('.slide');
 
     slides.forEach((slide, index) => {
         // Remove all state classes
-        slide.classList.remove('active', 'stack-1', 'stack-2', 'stack-3', 'hidden', 'exiting', 'entering');
+        slide.classList.remove('active', 'stack-1', 'stack-2', 'stack-3', 'prev-1', 'prev-2', 'prev-3', 'hidden', 'exiting', 'entering');
 
         const diff = index - currentIndex;
 
@@ -86,19 +79,21 @@ function updateSlideStates() {
             // Current slide - front
             slide.classList.add('active');
         } else if (diff === 1) {
-            // Next slide - slightly behind
+            // Next slide - peeking on right
             slide.classList.add('stack-1');
         } else if (diff === 2) {
-            // Two behind
             slide.classList.add('stack-2');
         } else if (diff === 3) {
-            // Three behind
             slide.classList.add('stack-3');
-        } else if (diff > 3) {
-            // Far behind - hidden
-            slide.classList.add('hidden');
+        } else if (diff === -1) {
+            // Previous slide - peeking on left
+            slide.classList.add('prev-1');
+        } else if (diff === -2) {
+            slide.classList.add('prev-2');
+        } else if (diff === -3) {
+            slide.classList.add('prev-3');
         } else {
-            // Already viewed - hidden to left
+            // Far away - hidden
             slide.classList.add('hidden');
         }
     });
@@ -106,12 +101,13 @@ function updateSlideStates() {
     currentPhotoSpan.textContent = currentIndex + 1;
 }
 
-// Show previous photo
+// Show previous photo (loops infinitely)
 function showPrevious() {
-    if (currentIndex <= 0 || isTransitioning) return;
+    if (isTransitioning) return;
 
     isTransitioning = true;
-    currentIndex--;
+    // Loop back to end if at start
+    currentIndex = (currentIndex - 1 + photos.length) % photos.length;
 
     updateSlideStates();
     updateButtonStates();
@@ -121,9 +117,9 @@ function showPrevious() {
     }, 500);
 }
 
-// Show next photo
+// Show next photo (loops infinitely)
 function showNext() {
-    if (currentIndex >= photos.length - 1 || isTransitioning) return;
+    if (isTransitioning) return;
 
     isTransitioning = true;
 
@@ -135,17 +131,18 @@ function showNext() {
 
     setTimeout(() => {
         currentSlide.classList.remove('exiting');
-        currentIndex++;
+        // Loop back to start if at end
+        currentIndex = (currentIndex + 1) % photos.length;
         updateSlideStates();
         updateButtonStates();
         isTransitioning = false;
     }, 500);
 }
 
-// Update button states
+// Update button states (buttons always enabled for infinite loop)
 function updateButtonStates() {
-    prevButton.disabled = currentIndex === 0;
-    nextButton.disabled = currentIndex === photos.length - 1;
+    prevButton.disabled = false;
+    nextButton.disabled = false;
 }
 
 // Handle keyboard navigation

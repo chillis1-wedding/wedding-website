@@ -234,18 +234,23 @@ body:has(.projector-section)::after {
         font-size: 1.1rem;
     }
 
+    .projector-section {
+        padding-top: 5rem;
+    }
+
     .projector-container {
-        gap: 1rem;
-        padding: 0 15px;
+        gap: 0.75rem;
+        padding: 0 10px;
     }
 
     .projector-btn {
-        width: 50px;
-        height: 50px;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
     }
 
     .btn-icon {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .photo-counter {
@@ -257,23 +262,136 @@ body:has(.projector-section)::after {
     .slide {
         border-radius: 8px;
     }
+
+    /* Reduce stack offset on tablets */
+    .slide.stack-3 {
+        transform: translateX(60px) scale(0.88);
+    }
+
+    .slide.stack-2 {
+        transform: translateX(40px) scale(0.92);
+    }
+
+    .slide.stack-1 {
+        transform: translateX(20px) scale(0.96);
+    }
+
+    .slide.prev-1 {
+        transform: translateX(-20px) scale(0.96);
+    }
+
+    .slide.prev-2 {
+        transform: translateX(-40px) scale(0.92);
+    }
+
+    .slide.prev-3 {
+        transform: translateX(-60px) scale(0.88);
+    }
 }
 
 @media (max-width: 480px) {
     .projector-section {
         padding: 1rem 0 3rem;
+        padding-top: 4.5rem;
     }
 
     .projector-container {
         gap: 0.5rem;
+        padding: 0 8px;
     }
 
     .projector-btn {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
     }
 
     .btn-icon {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+    }
+
+    .photo-counter {
+        bottom: -35px;
+        font-size: 0.8rem;
+        padding: 5px 14px;
+    }
+
+    /* Further reduce stack offset on phones */
+    .slide.stack-3 {
+        transform: translateX(30px) scale(0.90);
+        opacity: 0.3;
+    }
+
+    .slide.stack-2 {
+        transform: translateX(20px) scale(0.93);
+        opacity: 0.5;
+    }
+
+    .slide.stack-1 {
+        transform: translateX(10px) scale(0.96);
+        opacity: 0.7;
+    }
+
+    .slide.prev-1 {
+        transform: translateX(-10px) scale(0.96);
+        opacity: 0.7;
+    }
+
+    .slide.prev-2 {
+        transform: translateX(-20px) scale(0.93);
+        opacity: 0.5;
+    }
+
+    .slide.prev-3 {
+        transform: translateX(-30px) scale(0.90);
+        opacity: 0.3;
+    }
+
+    .slide.exiting {
+        transform: translateX(-80%) scale(0.9) rotateY(5deg);
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 375px) {
+    .projector-section {
+        padding-top: 4rem;
+    }
+
+    .projector-container {
+        gap: 0.35rem;
+        padding: 0 5px;
+    }
+
+    .projector-btn {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+
+    .btn-icon {
+        font-size: 0.75rem;
+    }
+
+    /* Minimal stack offset on tiny screens */
+    .slide.stack-3,
+    .slide.prev-3 {
+        opacity: 0;
+    }
+
+    .slide.stack-2 {
+        transform: translateX(15px) scale(0.94);
+    }
+
+    .slide.stack-1 {
+        transform: translateX(8px) scale(0.97);
+    }
+
+    .slide.prev-1 {
+        transform: translateX(-8px) scale(0.97);
+    }
+
+    .slide.prev-2 {
+        transform: translateX(-15px) scale(0.94);
     }
 }

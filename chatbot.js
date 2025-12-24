@@ -35,6 +35,18 @@ chatbotInput.addEventListener('keypress', (e) => {
     }
 });
 
+// Handle sample prompt clicks
+const samplePrompts = document.querySelectorAll('.sample-prompt');
+samplePrompts.forEach(button => {
+    button.addEventListener('click', () => {
+        const prompt = button.getAttribute('data-prompt');
+        chatbotInput.value = prompt;
+        sendMessage();
+        // Hide sample prompts after first use
+        document.querySelector('.sample-prompts').classList.add('hidden');
+    });
+});
+
 // Function to send message
 async function sendMessage() {
     const message = chatbotInput.value.trim();

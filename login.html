@@ -231,27 +231,6 @@
             font-style: italic;
         }
 
-        .password-required-banner {
-            background: linear-gradient(135deg, #C2654A, #D4A254);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-size: 1.4rem;
-            font-weight: bold;
-            font-family: 'Georgia', serif;
-            margin-bottom: 2rem;
-            display: inline-block;
-            animation: banner-pulse 2s ease-in-out infinite;
-            box-shadow: 0 4px 15px rgba(194, 101, 74, 0.4);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        @keyframes banner-pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(194, 101, 74, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 6px 25px rgba(194, 101, 74, 0.6); }
-        }
-
         .kai-says {
             font-size: 1rem;
             color: #666;
@@ -269,11 +248,30 @@
             to { transform: rotate(3deg); }
         }
 
+        .login-box-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .static-kai {
+            position: absolute;
+            right: -120px;
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
+            z-index: 2;
+        }
+
         .login-box {
             background: rgba(255, 255, 255, 0.95);
             padding: 2.5rem;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 1;
         }
 
         .login-prompt {
@@ -359,9 +357,21 @@
             .login-box {
                 padding: 2rem 1.5rem;
             }
-            .password-required-banner {
-                font-size: 1.1rem;
-                padding: 0.6rem 1.5rem;
+            .static-kai {
+                right: -80px;
+                width: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .static-kai {
+                position: relative;
+                right: auto;
+                width: 100px;
+                margin-top: 1rem;
+            }
+            .login-box-wrapper {
+                flex-direction: column;
             }
         }
     </style>
@@ -379,31 +389,27 @@
 
         <div class="login-container">
             <h1 class="login-title">
-                <span class="sara">Sara</span> <span class="amp">&</span> <span class="willis">Willis</span>
+                <span class="sara">Sara</span> <span class="amp">+</span> <span class="willis">Willis</span>
             </h1>
-            <p class="login-subtitle">Are Getting Married!</p>
+            <div class="login-box-wrapper">
+                <div class="login-box">
+                    <p class="login-prompt">Someone is guarding the door, state your secret password stranger</p>
 
-            <div class="password-required-banner">State your business, stranger</div>
+                    <form id="loginForm">
+                        <input
+                            type="text"
+                            id="password"
+                            class="password-input"
+                            placeholder="our furry friend's name"
+                            autocomplete="off"
+                            autofocus
+                        >
+                        <button type="submit" class="enter-btn">Enter</button>
+                    </form>
 
-            <p class="kai-says"><span>Someone is guarding the door...</span></p>
-
-            <div class="login-box">
-                <p class="login-prompt">Enter the secret password to view our wedding details</p>
-                <p class="login-hint">Hint: our furry friend's name</p>
-
-                <form id="loginForm">
-                    <input
-                        type="text"
-                        id="password"
-                        class="password-input"
-                        placeholder="Enter password..."
-                        autocomplete="off"
-                        autofocus
-                    >
-                    <button type="submit" class="enter-btn">Enter</button>
-                </form>
-
-                <p id="errorMsg" class="error-message">WOOF! That's not right. Try again!</p>
+                    <p id="errorMsg" class="error-message">WOOF! That's not right. Try again!</p>
+                </div>
+                <img src="kai_no_background.png" alt="Kai guarding the door" class="static-kai">
             </div>
         </div>
     </div>

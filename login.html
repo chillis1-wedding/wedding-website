@@ -348,8 +348,8 @@
             opacity: 1;
         }
 
-        /* RAINBOW EXPLOSION - Horizontal stripes that burst outward! */
-        .rainbow-transition {
+        /* EXPLODING KAI TEXT + CONFETTI */
+        .kai-transition {
             position: fixed;
             top: 0;
             left: 0;
@@ -357,97 +357,110 @@
             height: 100%;
             z-index: 9999;
             pointer-events: none;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .rainbow-stripe {
+        /* The big KAI text that grows slowly then explodes */
+        .exploding-kai {
+            font-family: 'Pacifico', cursive;
+            font-size: 0;
+            color: transparent;
+            background: linear-gradient(45deg, #ffd700, #ff1493, #93E9BE, #7FFF00, #ff6b35, #40E0D0, #ff69b4);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            position: absolute;
+            opacity: 0;
+            z-index: 10000;
+        }
+
+        .kai-transition.active .exploding-kai {
+            animation: kai-grow-explode 1.8s ease-in-out forwards, rainbow-shift 0.4s linear infinite;
+        }
+
+        @keyframes kai-grow-explode {
+            0% {
+                font-size: 3rem;
+                opacity: 1;
+            }
+            50% {
+                font-size: 30vw;
+                opacity: 1;
+            }
+            75% {
+                font-size: 45vw;
+                opacity: 1;
+            }
+            90% {
+                font-size: 55vw;
+                opacity: 1;
+            }
+            100% {
+                font-size: 65vw;
+                opacity: 0;
+            }
+        }
+
+        @keyframes rainbow-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Confetti container */
+        .confetti-container {
+            position: absolute;
             width: 100%;
-            flex: 1;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Individual confetti pieces */
+        .confetti {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 12px;
+            height: 12px;
             opacity: 0;
         }
 
-        /* Sara's rainbow colors */
-        .stripe-1 { background: #ffd700; } /* Gold */
-        .stripe-2 { background: #ff1493; } /* Hot Pink */
-        .stripe-3 { background: #93E9BE; } /* Sea Foam */
-        .stripe-4 { background: #7FFF00; } /* Lime Green */
-        .stripe-5 { background: #ffd700; } /* Gold */
-        .stripe-6 { background: #ff1493; } /* Hot Pink */
-        .stripe-7 { background: #93E9BE; } /* Sea Foam */
-        .stripe-8 { background: #7FFF00; } /* Lime Green */
-
-        /* Each stripe bursts in a different wild direction! */
-        .rainbow-transition.active .stripe-1 {
-            animation: burst-up-left 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
-        .rainbow-transition.active .stripe-2 {
-            animation: burst-right-spin 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.05s;
-        }
-        .rainbow-transition.active .stripe-3 {
-            animation: burst-down-right 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.1s;
-        }
-        .rainbow-transition.active .stripe-4 {
-            animation: burst-left-wild 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.08s;
-        }
-        .rainbow-transition.active .stripe-5 {
-            animation: burst-up-spin 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.12s;
-        }
-        .rainbow-transition.active .stripe-6 {
-            animation: burst-scatter-right 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.03s;
-        }
-        .rainbow-transition.active .stripe-7 {
-            animation: burst-down-left 0.95s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.15s;
-        }
-        .rainbow-transition.active .stripe-8 {
-            animation: burst-up-wild 1.05s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.07s;
+        .kai-transition.active .confetti {
+            opacity: 1;
         }
 
-        /* Wild burst animations - appear then explode outward */
-        @keyframes burst-up-left {
-            0% { opacity: 0; transform: scaleY(0); }
-            20% { opacity: 1; transform: scaleY(1); }
-            100% { opacity: 0; transform: translateX(-150%) translateY(-200%) rotate(-45deg) scaleY(2); }
-        }
-        @keyframes burst-right-spin {
-            0% { opacity: 0; transform: scaleY(0); }
-            20% { opacity: 1; transform: scaleY(1); }
-            100% { opacity: 0; transform: translateX(150%) rotate(720deg) scaleY(0.5) scaleX(2); }
-        }
-        @keyframes burst-down-right {
-            0% { opacity: 0; transform: scaleY(0); }
-            20% { opacity: 1; transform: scaleY(1); }
-            100% { opacity: 0; transform: translateX(120%) translateY(180%) rotate(30deg) scaleY(1.5); }
-        }
-        @keyframes burst-left-wild {
-            0% { opacity: 0; transform: scaleY(0); }
-            20% { opacity: 1; transform: scaleY(1); }
-            100% { opacity: 0; transform: translateX(-180%) rotate(-360deg) skewX(20deg) scaleY(0.3); }
-        }
-        @keyframes burst-up-spin {
-            0% { opacity: 0; transform: scaleY(0); }
-            20% { opacity: 1; transform: scaleY(1); }
-            100% { opacity: 0; transform: translateY(-250%) rotate(540deg) scaleX(0.5); }
-        }
-        @keyframes burst-scatter-right {
-            0% { opacity: 0; transform: scaleY(0); }
-            20% { opacity: 1; transform: scaleY(1); }
-            100% { opacity: 0; transform: translateX(200%) translateY(100%) rotate(-90deg) scaleY(2.5); }
-        }
-        @keyframes burst-down-left {
-            0% { opacity: 0; transform: scaleY(0); }
-            20% { opacity: 1; transform: scaleY(1); }
-            100% { opacity: 0; transform: translateX(-130%) translateY(220%) rotate(180deg) scaleX(1.5); }
-        }
-        @keyframes burst-up-wild {
-            0% { opacity: 0; transform: scaleY(0); }
-            20% { opacity: 1; transform: scaleY(1); }
-            100% { opacity: 0; transform: translateY(-180%) translateX(50%) rotate(-270deg) skewY(15deg); }
+        /* Confetti colors */
+        .c1 { background: #ffd700; }
+        .c2 { background: #ff1493; }
+        .c3 { background: #93E9BE; }
+        .c4 { background: #7FFF00; }
+        .c5 { background: #ff6b35; }
+        .c6 { background: #40E0D0; }
+        .c7 { background: #ff69b4; }
+        .c8 { background: #DA70D6; }
+
+        /* Confetti animations - each piece flies in different direction */
+        .kai-transition.active .confetti {
+            animation: confetti-burst 1.5s ease-out forwards 1.4s;
         }
 
-        /* Login page fades out while stripes explode */
+        @keyframes confetti-burst {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Login page fades out */
         .login-page.success {
-            animation: fade-out 0.8s ease-out forwards 0.2s;
+            animation: fade-out 0.8s ease-out forwards 0.5s;
         }
 
         @keyframes fade-out {
@@ -466,7 +479,7 @@
                 transform: scale(1);
             }
             100% {
-                box-shadow: 0 0 80px rgba(147, 233, 190, 1), 0 0 120px rgba(255, 215, 0, 0.8);
+                box-shadow: 0 0 60px rgba(147, 233, 190, 0.8), 0 0 100px rgba(255, 215, 0, 0.6);
                 transform: scale(1.02);
             }
         }
@@ -501,16 +514,11 @@
     </style>
 </head>
 <body>
-    <!-- Rainbow Transition Overlay -->
-    <div id="rainbowTransition" class="rainbow-transition">
-        <div class="rainbow-stripe stripe-1"></div>
-        <div class="rainbow-stripe stripe-2"></div>
-        <div class="rainbow-stripe stripe-3"></div>
-        <div class="rainbow-stripe stripe-4"></div>
-        <div class="rainbow-stripe stripe-5"></div>
-        <div class="rainbow-stripe stripe-6"></div>
-        <div class="rainbow-stripe stripe-7"></div>
-        <div class="rainbow-stripe stripe-8"></div>
+    <!-- KAI Explosion Transition -->
+    <div id="kaiTransition" class="kai-transition">
+        <span class="exploding-kai">Kai</span>
+        <!-- Confetti explosion - generated by JS -->
+        <div class="confetti-container" id="confettiContainer"></div>
     </div>
 
     <div id="loginPage" class="login-page">
@@ -529,7 +537,7 @@
             </h1>
             <div class="login-box-wrapper">
                 <div class="login-box">
-                    <p class="login-prompt">Someone is guarding the door, state your secret password stranger</p>
+                    <p class="login-prompt">Someone is guarding the door, state the password, stranger</p>
 
                     <form id="loginForm">
                         <input
@@ -573,13 +581,42 @@
                 // Add success glow to login box
                 document.getElementById('loginPage').classList.add('success');
 
-                // Trigger rainbow explosion immediately!
-                document.getElementById('rainbowTransition').classList.add('active');
+                // Generate confetti pieces
+                const container = document.getElementById('confettiContainer');
+                const colors = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8'];
+                const shapes = ['', 'border-radius: 50%;', 'border-radius: 0;', 'transform: rotate(45deg);'];
 
-                // Redirect after explosion completes
+                for (let i = 0; i < 1000; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = `confetti ${colors[i % colors.length]}`;
+
+                    // Random direction and rotation
+                    const angle = (Math.random() * 360) * (Math.PI / 180);
+                    const distance = 80 + Math.random() * 60; // 80-140vw distance
+                    const x = Math.cos(angle) * distance;
+                    const y = Math.sin(angle) * distance;
+                    const rotation = Math.random() * 1080 - 540; // -540 to 540 degrees
+
+                    confetti.style.cssText = `
+                        --x: ${x}vw;
+                        --y: ${y}vh;
+                        --r: ${rotation}deg;
+                        width: ${8 + Math.random() * 10}px;
+                        height: ${8 + Math.random() * 10}px;
+                        ${shapes[Math.floor(Math.random() * shapes.length)]}
+                        animation-delay: ${1.4 + Math.random() * 0.2}s;
+                        animation-duration: ${1.2 + Math.random() * 0.6}s;
+                    `;
+                    container.appendChild(confetti);
+                }
+
+                // Trigger KAI explosion!
+                document.getElementById('kaiTransition').classList.add('active');
+
+                // Redirect after KAI explodes into confetti (~3 seconds)
                 setTimeout(() => {
                     window.location.href = 'index.html';
-                }, 1200);
+                }, 3000);
             } else {
                 // Show error
                 input.classList.add('error');

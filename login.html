@@ -14,7 +14,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #F5EDE0 0%, #E8DCC4 50%, #D4C4B0 100%);
+            background: linear-gradient(180deg, #E8D8C8 0%, #D4B8A8 50%, #C49080 100%);
             position: relative;
             overflow: hidden;
         }
@@ -419,39 +419,32 @@
             opacity: 1;
         }
 
-        /* Confetti colors - Chinese dragon colors */
+        /* Confetti colors - festive mix */
         .c-red { background: #FF0000; }
         .c-gold { background: #FFD700; }
-        .c-orange { background: #FF4500; }
+        .c-seafoam { background: #93E9BE; }
+        .c-pink { background: #FF69B4; }
+        .c-blue { background: #4169E1; }
+        .c-purple { background: #9370DB; }
+        .c-orange { background: #FF6B35; }
         .c-yellow { background: #FFFF00; }
-        .c-white { background: #FFFFFF; }
 
-        /* Confetti animations - explode OUT then form dragon shape */
+        /* Confetti animation - explode outward and fall */
         .kai-transition.active .confetti {
-            animation: confetti-explode-to-dragon 2.5s ease-out forwards;
+            animation: confetti-explode 2.5s ease-out forwards;
         }
 
-        @keyframes confetti-explode-to-dragon {
+        @keyframes confetti-explode {
             0% {
-                transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0) rotate(0deg);
                 opacity: 1;
             }
-            /* Explode outward in random directions */
-            30% {
-                transform: translate(var(--ex), var(--ey)) scale(1.5);
-                opacity: 1;
-            }
-            /* Settle into dragon shape */
-            70% {
-                transform: translate(var(--x), var(--y)) scale(var(--s));
-                opacity: 1;
-            }
-            85% {
-                transform: translate(var(--x), var(--y)) scale(var(--s));
+            20% {
+                transform: translate(var(--ex), var(--ey)) scale(1) rotate(180deg);
                 opacity: 1;
             }
             100% {
-                transform: translate(var(--x), var(--y)) scale(var(--s));
+                transform: translate(var(--ex), calc(var(--ey) + 100vh)) scale(0.5) rotate(720deg);
                 opacity: 0;
             }
         }
@@ -543,7 +536,7 @@
                             type="text"
                             id="password"
                             class="password-input"
-                            placeholder="our furry friend's name"
+                            placeholder="our furry friend"
                             autocomplete="off"
                             autofocus
                         >
@@ -580,174 +573,37 @@
                 // Add success glow to login box
                 document.getElementById('loginPage').classList.add('success');
 
-                // Generate DRAGON FACE with flowing tail!
+                // Generate thousands of confetti pieces!
                 const container = document.getElementById('confettiContainer');
-                const dragonParts = [];
+                const colors = ['c-red', 'c-gold', 'c-seafoam', 'c-pink', 'c-blue', 'c-purple', 'c-orange', 'c-yellow'];
+                const confettiCount = 1000;
 
-                // ===== DRAGON FACE (centered, facing forward) =====
-
-                // Face outline - large oval
-                for (let i = 0; i < 150; i++) {
-                    const angle = (i / 150) * Math.PI * 2;
-                    const x = Math.cos(angle) * 18;
-                    const y = Math.sin(angle) * 22;
-                    dragonParts.push({ x, y, color: 'c-red', size: 14, delay: 0 });
-                }
-
-                // Face fill
-                for (let i = 0; i < 200; i++) {
-                    const angle = Math.random() * Math.PI * 2;
-                    const r = Math.random() * 16;
-                    const x = Math.cos(angle) * r;
-                    const y = Math.sin(angle) * r * 1.2;
-                    dragonParts.push({ x, y, color: 'c-red', size: 12, delay: 0.05 });
-                }
-
-                // LEFT EYE - white circle with gold ring
-                for (let i = 0; i < 40; i++) {
-                    const angle = (i / 40) * Math.PI * 2;
-                    const x = -8 + Math.cos(angle) * 5;
-                    const y = -5 + Math.sin(angle) * 5;
-                    dragonParts.push({ x, y, color: 'c-gold', size: 10, delay: 0.1 });
-                }
-                for (let i = 0; i < 30; i++) {
-                    const angle = Math.random() * Math.PI * 2;
-                    const r = Math.random() * 3;
-                    const x = -8 + Math.cos(angle) * r;
-                    const y = -5 + Math.sin(angle) * r;
-                    dragonParts.push({ x, y, color: 'c-white', size: 8, delay: 0.1 });
-                }
-                // Left pupil
-                for (let i = 0; i < 15; i++) {
-                    const x = -8 + (Math.random() - 0.5) * 3;
-                    const y = -5 + (Math.random() - 0.5) * 3;
-                    dragonParts.push({ x, y, color: 'c-red', size: 6, delay: 0.15 });
-                }
-
-                // RIGHT EYE - white circle with gold ring
-                for (let i = 0; i < 40; i++) {
-                    const angle = (i / 40) * Math.PI * 2;
-                    const x = 8 + Math.cos(angle) * 5;
-                    const y = -5 + Math.sin(angle) * 5;
-                    dragonParts.push({ x, y, color: 'c-gold', size: 10, delay: 0.1 });
-                }
-                for (let i = 0; i < 30; i++) {
-                    const angle = Math.random() * Math.PI * 2;
-                    const r = Math.random() * 3;
-                    const x = 8 + Math.cos(angle) * r;
-                    const y = -5 + Math.sin(angle) * r;
-                    dragonParts.push({ x, y, color: 'c-white', size: 8, delay: 0.1 });
-                }
-                // Right pupil
-                for (let i = 0; i < 15; i++) {
-                    const x = 8 + (Math.random() - 0.5) * 3;
-                    const y = -5 + (Math.random() - 0.5) * 3;
-                    dragonParts.push({ x, y, color: 'c-red', size: 6, delay: 0.15 });
-                }
-
-                // EYEBROWS - fierce angled lines above eyes
-                for (let i = 0; i < 30; i++) {
-                    const t = i / 30;
-                    // Left eyebrow - angled up and out
-                    dragonParts.push({ x: -12 + t * 8, y: -12 - t * 4, color: 'c-gold', size: 10, delay: 0.1 });
-                    // Right eyebrow
-                    dragonParts.push({ x: 12 - t * 8, y: -12 - t * 4, color: 'c-gold', size: 10, delay: 0.1 });
-                }
-
-                // NOSE - two nostrils
-                for (let i = 0; i < 20; i++) {
-                    dragonParts.push({ x: -3 + (Math.random() - 0.5) * 3, y: 3 + Math.random() * 2, color: 'c-gold', size: 8, delay: 0.15 });
-                    dragonParts.push({ x: 3 + (Math.random() - 0.5) * 3, y: 3 + Math.random() * 2, color: 'c-gold', size: 8, delay: 0.15 });
-                }
-
-                // MOUTH - wide grin with teeth
-                for (let i = 0; i < 60; i++) {
-                    const t = (i / 60) - 0.5; // -0.5 to 0.5
-                    const x = t * 28;
-                    const y = 12 + Math.abs(t) * 8; // curved smile
-                    dragonParts.push({ x, y, color: 'c-gold', size: 10, delay: 0.2 });
-                }
-                // Teeth
-                for (let i = 0; i < 8; i++) {
-                    const x = -14 + i * 4;
-                    dragonParts.push({ x, y: 11, color: 'c-white', size: 8, delay: 0.2 });
-                }
-
-                // HORNS - two big horns on top
-                for (let i = 0; i < 40; i++) {
-                    const t = i / 40;
-                    // Left horn - curves up and out
-                    dragonParts.push({ x: -10 - t * 8, y: -18 - t * 15, color: 'c-gold', size: 12 - t * 4, delay: 0.1 });
-                    // Right horn
-                    dragonParts.push({ x: 10 + t * 8, y: -18 - t * 15, color: 'c-gold', size: 12 - t * 4, delay: 0.1 });
-                }
-
-                // WHISKERS/TENDRILS - flowing from sides of face
-                for (let i = 0; i < 50; i++) {
-                    const t = i / 50;
-                    // Left whiskers - wavy
-                    const waveL = Math.sin(t * Math.PI * 3) * 3;
-                    dragonParts.push({ x: -18 - t * 20, y: 5 + waveL + t * 10, color: 'c-orange', size: 8 - t * 3, delay: 0.2 + t * 0.1 });
-                    // Right whiskers
-                    const waveR = Math.sin(t * Math.PI * 3) * 3;
-                    dragonParts.push({ x: 18 + t * 20, y: 5 + waveR + t * 10, color: 'c-orange', size: 8 - t * 3, delay: 0.2 + t * 0.1 });
-                }
-
-                // ===== FLOWING TAIL (goes down from face) =====
-                for (let i = 0; i < 300; i++) {
-                    const t = i / 300; // 0 to 1 along tail
-                    const wave = Math.sin(t * Math.PI * 4) * (8 + t * 15); // increasing wave amplitude
-                    const x = wave;
-                    const y = 25 + t * 50; // flows downward
-                    const thickness = 10 - t * 6; // tapers
-
-                    // Main tail
-                    dragonParts.push({ x, y, color: t < 0.5 ? 'c-red' : 'c-orange', size: thickness, delay: 0.3 + t * 0.3 });
-                    // Tail edge details
-                    if (i % 5 === 0) {
-                        dragonParts.push({ x: x - 3, y, color: 'c-gold', size: thickness * 0.6, delay: 0.3 + t * 0.3 });
-                        dragonParts.push({ x: x + 3, y, color: 'c-gold', size: thickness * 0.6, delay: 0.3 + t * 0.3 });
-                    }
-                }
-
-                // Tail tip flourish
-                for (let i = 0; i < 30; i++) {
-                    const angle = (i / 30) * Math.PI + Math.PI/2;
-                    const r = 5 + i * 0.3;
-                    const baseX = Math.sin(4 * Math.PI) * 23; // end of tail wave
-                    dragonParts.push({
-                        x: baseX + Math.cos(angle) * r,
-                        y: 75 + Math.sin(angle) * r * 0.5,
-                        color: 'c-yellow',
-                        size: 6,
-                        delay: 0.6
-                    });
-                }
-
-                // Create all confetti elements
-                dragonParts.forEach((part, i) => {
+                for (let i = 0; i < confettiCount; i++) {
                     const confetti = document.createElement('div');
-                    confetti.className = `confetti ${part.color}`;
+                    confetti.className = `confetti ${colors[Math.floor(Math.random() * colors.length)]}`;
 
-                    // Random explosion direction (outward burst)
-                    const explodeAngle = Math.random() * Math.PI * 2;
-                    const explodeDistance = 30 + Math.random() * 50; // 30-80vw outward
-                    const ex = Math.cos(explodeAngle) * explodeDistance;
-                    const ey = Math.sin(explodeAngle) * explodeDistance;
+                    // Random explosion direction (full 360 degrees)
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 20 + Math.random() * 60; // 20-80vw outward
+                    const ex = Math.cos(angle) * distance;
+                    const ey = Math.sin(angle) * distance - 20; // bias upward initially
+
+                    // Random sizes for variety
+                    const size = 6 + Math.random() * 12;
+
+                    // Staggered delays for wave effect
+                    const delay = Math.random() * 0.3;
 
                     confetti.style.cssText = `
-                        --x: ${part.x}vw;
-                        --y: ${part.y}vh;
                         --ex: ${ex}vw;
                         --ey: ${ey}vh;
-                        --s: 1;
-                        width: ${part.size}px;
-                        height: ${part.size}px;
-                        animation-delay: ${part.delay * 0.3}s;
-                        animation-duration: 2.8s;
+                        width: ${size}px;
+                        height: ${size}px;
+                        animation-delay: ${delay}s;
+                        border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
                     `;
                     container.appendChild(confetti);
-                });
+                }
 
                 // Trigger firework launch!
                 document.getElementById('kaiTransition').classList.add('active');

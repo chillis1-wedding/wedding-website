@@ -12,23 +12,30 @@
     --bg-light: #f9f7f4;
     --white: #ffffff;
     --sara-mint: #93E9BE;
-    /* Georgia O'Keeffe Adobe Palette - Ranchos Church */
-    --adobe-dark: #9B7B6B;
-    --adobe-light: #C9ADA0;
-    --adobe-rose: #D4B8AB;
-    --adobe-cream: #E5D5C8;
-    --sky-lavender: #B8B5C4;
-    --sky-gray: #8E8D9A;
-    --sky-light: #C8C6CF;
-    /* Legacy palette for compatibility */
-    --desert-terracotta: #9B7B6B;
-    --desert-sand: #D4C4B5;
-    --desert-sky: #B8B5C4;
-    --desert-rose: #C9ADA0;
-    --desert-ochre: #B09080;
-    --desert-sienna: #8B6B5B;
-    --desert-cream: #E5D5C8;
-    --desert-dusk: #D4B8AB;
+    /* Ghost Ranch Desert Palette */
+    --desert-peach: #E8C4B8;
+    --desert-coral: #D4A797;
+    --desert-sage: #B8C4A8;
+    --desert-cream: #F0E6DC;
+    --desert-blush: #DCBCB0;
+    --desert-gold: #D4C49C;
+    --desert-clay: #C49484;
+    --sky-pale: #C8D4D8;
+    /* Legacy compatibility */
+    --adobe-dark: #C49484;
+    --adobe-light: #D4A797;
+    --adobe-rose: #DCBCB0;
+    --adobe-cream: #F0E6DC;
+    --sky-lavender: #C8D4D8;
+    --sky-gray: #A8B4B8;
+    --sky-light: #D8E0E4;
+    --desert-terracotta: #C49484;
+    --desert-sand: #E8D8C8;
+    --desert-sky: #C8D4D8;
+    --desert-rose: #D4A797;
+    --desert-ochre: #D4C49C;
+    --desert-sienna: #B48474;
+    --desert-dusk: #DCBCB0;
 }
 
 body {
@@ -96,81 +103,26 @@ body {
     font-weight: 600;
 }
 
-/* Content Pages - O'Keeffe Adobe Style */
+/* Content Pages - Simple Desert Gradient */
 .content-page {
-    min-height: 70vh;
+    min-height: 100vh;
     padding: 5rem 0;
     padding-top: 8rem;
     background: linear-gradient(
         180deg,
-        var(--sky-lavender) 0%,
-        var(--sky-light) 15%,
-        var(--adobe-cream) 35%,
-        var(--adobe-rose) 60%,
-        var(--adobe-light) 80%,
-        var(--adobe-dark) 100%
+        #E8D8C8 0%,
+        #D4B8A8 50%,
+        #C49080 100%
     );
     position: relative;
 }
 
-/* Story page - blurred photo background like gallery */
-.story-page {
-    min-height: 100vh;
-    background: transparent;
-}
-
-body:has(.story-page) {
-    position: relative;
-    overflow-x: hidden;
-}
-
-body:has(.story-page)::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('okeeffe-gallery.jpg') center center / cover no-repeat;
-    filter: blur(8px);
-    transform: scale(1.1);
-    z-index: -2;
-}
-
-body:has(.story-page)::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: -1;
-}
-
-body:has(.story-page) .content-page::before {
-    display: none;
-}
-
-.content-page::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image:
-        radial-gradient(ellipse 80% 50% at 20% 90%, var(--adobe-dark) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 80% 85%, var(--adobe-light) 0%, transparent 45%),
-        radial-gradient(ellipse 100% 30% at 50% 0%, var(--sky-gray) 0%, transparent 60%);
-    opacity: 0.3;
-    pointer-events: none;
-}
+/* Removed story-page override - all content pages use same gradient */
 
 .content-page h1 {
     text-align: center;
     font-size: 3rem;
-    color: var(--adobe-dark);
+    color: #333;
     margin-bottom: 3rem;
     font-weight: 400;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
@@ -910,10 +862,10 @@ footer p {
 
 .faq-section h2 {
     font-size: 2rem;
-    color: var(--adobe-dark);
+    color: #333;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--adobe-light);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .section-intro {

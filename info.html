@@ -45,10 +45,12 @@
 
             <div class="faq-section">
                 <h2>Accommodations</h2>
-                <div class="faq-card">
+                <div class="faq-card highlight-card">
                     <h3>Bishop's Lodge</h3>
                     <p>Stay at the venue! Bishop's Lodge is a stunning 317-acre resort with casitas, suites, a spa, pool, and incredible mountain views.</p>
-                    <p><a href="https://aubergeresorts.com/bishopslodge/" target="_blank" class="faq-link">Book at Bishop's Lodge</a></p>
+                    <p><strong>Room Block Coming Soon:</strong> We're working on securing a room block and will share details shortly.</p>
+                    <p><em>That said, we know Bishop's Lodge is on the pricier side and we absolutely do not expect anyone to stay there! We've included several other lovely options below, and will follow up with shuttle and transportation details so you can stay wherever works best for you.</em></p>
+                    <p><a href="https://aubergeresorts.com/bishopslodge/" target="_blank" class="faq-link">Visit Bishop's Lodge Website</a></p>
                 </div>
                 <div class="faq-card">
                     <h3>La Fonda on the Plaza</h3>
@@ -142,7 +144,82 @@
                 </div>
             </div>
 
+            <!-- Easter Egg Button -->
+            <div style="text-align: center; margin-top: 3rem; padding-bottom: 2rem;">
+                <button id="surpriseBtn" style="
+                    background: rgba(255,255,255,0.6);
+                    border: 2px dashed #C49080;
+                    padding: 0.8rem 1.5rem;
+                    border-radius: 25px;
+                    font-family: Georgia, serif;
+                    font-size: 0.95rem;
+                    color: #8b7355;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                ">Still have questions?</button>
+            </div>
+
         </div>
     </section>
+
+    <!-- Surprise Modal -->
+    <div id="surpriseModal" style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    ">
+        <img src="surprise.jpeg" alt="Little Sara" style="
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 15px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+            animation: popIn 0.4s ease-out;
+        ">
+        <p style="
+            color: white;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.8rem;
+            margin-top: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        ">You found Soccer Superstar Sara!</p>
+        <button onclick="document.getElementById('surpriseModal').style.display='none'" style="
+            margin-top: 1rem;
+            background: #93E9BE;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            font-family: Georgia, serif;
+            cursor: pointer;
+        ">Aww, cute!</button>
+    </div>
+
+    <style>
+        #surpriseBtn:hover {
+            background: rgba(255,255,255,0.9);
+            transform: scale(1.05);
+            border-color: #93E9BE;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+
+    <script>
+        document.getElementById('surpriseBtn').addEventListener('click', function() {
+            document.getElementById('surpriseModal').style.display = 'flex';
+        });
+        document.getElementById('surpriseModal').addEventListener('click', function(e) {
+            if (e.target === this) this.style.display = 'none';
+        });
+    </script>
 </body>
 </html>

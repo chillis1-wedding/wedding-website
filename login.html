@@ -15,6 +15,8 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(180deg, #E8D8C8 0%, #D4B8A8 50%, #C49080 100%);
+            background-attachment: fixed;
+            background-size: cover;
             position: relative;
             overflow: hidden;
         }
@@ -419,19 +421,19 @@
             opacity: 1;
         }
 
-        /* Confetti colors - festive mix */
-        .c-red { background: #FF0000; }
-        .c-gold { background: #FFD700; }
-        .c-seafoam { background: #93E9BE; }
-        .c-pink { background: #FF69B4; }
-        .c-blue { background: #4169E1; }
-        .c-purple { background: #9370DB; }
-        .c-orange { background: #FF6B35; }
-        .c-yellow { background: #FFFF00; }
+        /* Confetti colors - desert palette */
+        .c-sage { background: #B8C4A8; }
+        .c-rose { background: #D4A797; }
+        .c-darkred { background: #8B4513; }
+        .c-peach { background: #E8C4B8; }
+        .c-cream { background: #F0E6DC; }
+        .c-clay { background: #C49484; }
+        .c-gold { background: #D4C49C; }
+        .c-blush { background: #DCBCB0; }
 
         /* Confetti animation - explode outward and fall */
         .kai-transition.active .confetti {
-            animation: confetti-explode 2.5s ease-out forwards;
+            animation: confetti-explode 1.5s ease-out forwards;
         }
 
         @keyframes confetti-explode {
@@ -451,7 +453,7 @@
 
         /* Login page fades out */
         .login-page.success {
-            animation: fade-out 0.8s ease-out forwards 0.5s;
+            animation: fade-out 0.5s ease-out forwards 0.3s;
         }
 
         @keyframes fade-out {
@@ -575,7 +577,7 @@
 
                 // Generate thousands of confetti pieces!
                 const container = document.getElementById('confettiContainer');
-                const colors = ['c-red', 'c-gold', 'c-seafoam', 'c-pink', 'c-blue', 'c-purple', 'c-orange', 'c-yellow'];
+                const colors = ['c-sage', 'c-rose', 'c-darkred', 'c-peach', 'c-cream', 'c-clay', 'c-gold', 'c-blush'];
                 const confettiCount = 1000;
 
                 for (let i = 0; i < confettiCount; i++) {
@@ -608,10 +610,10 @@
                 // Trigger firework launch!
                 document.getElementById('kaiTransition').classList.add('active');
 
-                // Redirect after dragon forms and fades (~3.5 seconds)
+                // Redirect after confetti animation (~1.8 seconds)
                 setTimeout(() => {
                     window.location.href = 'index.html';
-                }, 3800);
+                }, 1800);
             } else {
                 // Show error
                 input.classList.add('error');

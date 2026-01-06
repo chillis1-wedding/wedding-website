@@ -103,7 +103,7 @@ body {
     font-weight: 600;
 }
 
-/* Content Pages - Simple Desert Gradient */
+/* Content Pages - Fixed Desert Gradient Background */
 .content-page {
     min-height: 100vh;
     padding: 5rem 0;
@@ -114,6 +114,8 @@ body {
         #D4B8A8 50%,
         #C49080 100%
     );
+    background-attachment: fixed;
+    background-size: cover;
     position: relative;
 }
 
@@ -122,10 +124,9 @@ body {
 .content-page h1 {
     text-align: center;
     font-size: 3rem;
-    color: #333;
+    color: #3D5A4C;
     margin-bottom: 3rem;
     font-weight: 400;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 /* Navigation on content pages */
@@ -892,6 +893,59 @@ footer p {
     font-size: 1.4rem;
     color: var(--secondary-color);
     margin-bottom: 1rem;
+}
+
+.price-indicator {
+    font-size: 0.9rem;
+    color: var(--adobe-dark);
+    font-weight: 400;
+    margin-left: 0.5rem;
+}
+
+/* Reading List Styles */
+.book-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.book-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-3px);
+}
+
+.book-title {
+    font-size: 1.4rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+.book-author {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.book-year {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+.book-description {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--text-dark);
+    line-height: 1.7;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(139, 115, 85, 0.2);
 }
 
 .faq-card p {

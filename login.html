@@ -350,75 +350,6 @@
             opacity: 1;
         }
 
-        /* DRAGON EXPLOSION */
-        .kai-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-
-        /* Confetti container */
-        .confetti-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        /* Individual confetti pieces */
-        .confetti {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 12px;
-            height: 12px;
-            opacity: 0;
-            border-radius: 50%;
-        }
-
-        .kai-transition.active .confetti {
-            opacity: 1;
-        }
-
-        /* Confetti colors - Sara's desert palette */
-        .c-cream { background: #F5E6D3; }
-        .c-ochre { background: #C4A86C; }
-        .c-peach { background: #DBA07A; }
-        .c-terracotta { background: #C17A5E; }
-        .c-sage { background: #7A8B6A; }
-        .c-mauve { background: #9A7B7B; }
-
-        /* Confetti animation - explode outward and fall */
-        .kai-transition.active .confetti {
-            animation: confetti-explode 1.5s ease-out forwards;
-        }
-
-        @keyframes confetti-explode {
-            0% {
-                transform: translate(-50%, -50%) scale(0) rotate(0deg);
-                opacity: 1;
-            }
-            20% {
-                transform: translate(var(--ex), var(--ey)) scale(1) rotate(180deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--ex), calc(var(--ey) + 100vh)) scale(0.5) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        /* Login page - no fade transition, immediate redirect */
-        .login-page.success {
-            /* No animation - redirect immediately */
-        }
-
         @media (max-width: 768px) {
             .login-title {
                 font-size: 2.5rem;
@@ -449,11 +380,6 @@
     </style>
 </head>
 <body>
-    <!-- Confetti Transition -->
-    <div id="kaiTransition" class="kai-transition">
-        <div class="confetti-container" id="confettiContainer"></div>
-    </div>
-
     <div id="loginPage" class="login-page">
         <!-- 7 Floating Kais! -->
         <img src="kai_no_background.png" alt="Kai" class="floating-kai kai-1">
@@ -508,51 +434,9 @@
             const enteredPassword = input.value.toLowerCase().trim();
 
             if (enteredPassword === PASSWORD) {
-                // Store authentication
+                // Store authentication and redirect immediately
                 sessionStorage.setItem(STORAGE_KEY, 'true');
-
-                // Add success glow to login box
-                document.getElementById('loginPage').classList.add('success');
-
-                // Generate tons of confetti pieces!
-                const container = document.getElementById('confettiContainer');
-                const colors = ['c-cream', 'c-ochre', 'c-peach', 'c-terracotta', 'c-sage', 'c-mauve'];
-                const confettiCount = 10000;
-
-                for (let i = 0; i < confettiCount; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.className = `confetti ${colors[Math.floor(Math.random() * colors.length)]}`;
-
-                    // Random explosion direction (full 360 degrees)
-                    const angle = Math.random() * Math.PI * 2;
-                    const distance = 20 + Math.random() * 60; // 20-80vw outward
-                    const ex = Math.cos(angle) * distance;
-                    const ey = Math.sin(angle) * distance - 20; // bias upward initially
-
-                    // Random sizes for variety
-                    const size = 6 + Math.random() * 12;
-
-                    // Staggered delays for wave effect
-                    const delay = Math.random() * 0.3;
-
-                    confetti.style.cssText = `
-                        --ex: ${ex}vw;
-                        --ey: ${ey}vh;
-                        width: ${size}px;
-                        height: ${size}px;
-                        animation-delay: ${delay}s;
-                        border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
-                    `;
-                    container.appendChild(confetti);
-                }
-
-                // Trigger the confetti explosion
-                document.getElementById('kaiTransition').classList.add('active');
-
-                // Redirect after seeing the confetti burst
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 800);
+                window.location.href = 'index.html';
             } else {
                 // Show error
                 input.classList.add('error');

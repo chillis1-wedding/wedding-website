@@ -3,13 +3,19 @@
 // List of all photos (in order) - compressed WebP format
 const photos = [
     'photos/compressed/1_hawaii.webp',
-    'photos/compressed/2_steep_ravine_proposal.webp',
-    'photos/compressed/3_lake_tahoe.webp',
-    'photos/compressed/4_chicago.webp',
-    'photos/compressed/5_lisbon.webp',
-    'photos/compressed/6_china_beach.webp',
-    'photos/compressed/7_germany.webp',
-    'photos/compressed/8_hawaii_waterfall.webp'
+    'photos/compressed/2_engagement.webp',
+    'photos/compressed/3_dipsea.webp',
+    'photos/compressed/4_Port.webp',
+    'photos/compressed/5_tam.webp',
+    'photos/compressed/6_lp.webp',
+    'photos/compressed/7_tahoe.webp',
+    'photos/compressed/8_dc.webp',
+    'photos/compressed/9_chicago.webp',
+    'photos/compressed/10_waterfall.webp',
+    'photos/compressed/11_china.webp',
+    'photos/compressed/12_spruce.webp',
+    'photos/compressed/13_views.webp',
+    'photos/compressed/14_bryce.webp'
 ];
 
 let currentIndex = 0;

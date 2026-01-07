@@ -24,7 +24,7 @@
 }
 
 body {
-    font-family: 'Georgia', serif;
+    font-family: 'Varela Round', sans-serif;
     color: var(--text-dark);
     line-height: 1.6;
 }
@@ -539,7 +539,7 @@ body:has(.content-page) .main-nav {
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 1rem;
-    font-family: 'Georgia', serif;
+    font-family: 'Varela Round', sans-serif;
     transition: border-color 0.3s ease;
 }
 
@@ -565,7 +565,7 @@ body:has(.content-page) .main-nav {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-family: 'Georgia', serif;
+    font-family: 'Varela Round', sans-serif;
     letter-spacing: 1px;
 }
 
@@ -745,7 +745,7 @@ footer p {
     border: 2px solid #e0e0e0;
     border-radius: 25px;
     font-size: 0.95rem;
-    font-family: 'Georgia', serif;
+    font-family: 'Varela Round', sans-serif;
     outline: none;
 }
 
@@ -789,7 +789,7 @@ footer p {
     border-radius: 20px;
     padding: 8px 14px;
     font-size: 0.85rem;
-    font-family: 'Georgia', serif;
+    font-family: 'Varela Round', sans-serif;
     color: var(--text-dark);
     cursor: pointer;
     transition: all 0.2s ease;

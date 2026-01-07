@@ -449,30 +449,9 @@
             }
         }
 
-        /* Login page fades out */
+        /* Login page - no fade transition, immediate redirect */
         .login-page.success {
-            animation: fade-out 0.5s ease-out forwards 0.3s;
-        }
-
-        @keyframes fade-out {
-            0% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        /* Success state - make everything glow before transition */
-        .login-page.success .login-box {
-            animation: success-glow 0.4s ease-out forwards;
-        }
-
-        @keyframes success-glow {
-            0% {
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-                transform: scale(1);
-            }
-            100% {
-                box-shadow: 0 0 60px rgba(147, 233, 190, 0.8), 0 0 100px rgba(255, 215, 0, 0.6);
-                transform: scale(1.02);
-            }
+            /* No animation - redirect immediately */
         }
 
         @media (max-width: 768px) {
@@ -605,13 +584,8 @@
                     container.appendChild(confetti);
                 }
 
-                // Trigger firework launch!
-                document.getElementById('kaiTransition').classList.add('active');
-
-                // Redirect after confetti animation (~1.8 seconds)
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1800);
+                // Redirect immediately
+                window.location.href = 'index.html';
             } else {
                 // Show error
                 input.classList.add('error');

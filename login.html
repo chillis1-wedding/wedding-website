@@ -14,7 +14,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(180deg, #E8D8C8 0%, #D4B8A8 50%, #C49080 100%);
+            background: linear-gradient(180deg, #F5E6D3 0%, #DBA07A 50%, #C17A5E 100%);
             background-attachment: fixed;
             background-size: cover;
             position: relative;
@@ -421,15 +421,13 @@
             opacity: 1;
         }
 
-        /* Confetti colors - desert palette */
-        .c-sage { background: #B8C4A8; }
-        .c-rose { background: #D4A797; }
-        .c-darkred { background: #8B4513; }
-        .c-peach { background: #E8C4B8; }
-        .c-cream { background: #F0E6DC; }
-        .c-clay { background: #C49484; }
-        .c-gold { background: #D4C49C; }
-        .c-blush { background: #DCBCB0; }
+        /* Confetti colors - Sara's desert palette */
+        .c-cream { background: #F5E6D3; }
+        .c-ochre { background: #C4A86C; }
+        .c-peach { background: #DBA07A; }
+        .c-terracotta { background: #C17A5E; }
+        .c-sage { background: #7A8B6A; }
+        .c-mauve { background: #9A7B7B; }
 
         /* Confetti animation - explode outward and fall */
         .kai-transition.active .confetti {
@@ -577,7 +575,7 @@
 
                 // Generate thousands of confetti pieces!
                 const container = document.getElementById('confettiContainer');
-                const colors = ['c-sage', 'c-rose', 'c-darkred', 'c-peach', 'c-cream', 'c-clay', 'c-gold', 'c-blush'];
+                const colors = ['c-cream', 'c-ochre', 'c-peach', 'c-terracotta', 'c-sage', 'c-mauve'];
                 const confettiCount = 1000;
 
                 for (let i = 0; i < confettiCount; i++) {

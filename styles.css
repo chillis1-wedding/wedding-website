@@ -12,30 +12,15 @@
     --bg-light: #f9f7f4;
     --white: #ffffff;
     --sara-mint: #93E9BE;
-    /* Ghost Ranch Desert Palette */
-    --desert-peach: #E8C4B8;
-    --desert-coral: #D4A797;
-    --desert-sage: #B8C4A8;
-    --desert-cream: #F0E6DC;
-    --desert-blush: #DCBCB0;
-    --desert-gold: #D4C49C;
-    --desert-clay: #C49484;
-    --sky-pale: #C8D4D8;
-    /* Legacy compatibility */
-    --adobe-dark: #C49484;
-    --adobe-light: #D4A797;
-    --adobe-rose: #DCBCB0;
-    --adobe-cream: #F0E6DC;
-    --sky-lavender: #C8D4D8;
-    --sky-gray: #A8B4B8;
-    --sky-light: #D8E0E4;
-    --desert-terracotta: #C49484;
-    --desert-sand: #E8D8C8;
-    --desert-sky: #C8D4D8;
-    --desert-rose: #D4A797;
-    --desert-ochre: #D4C49C;
-    --desert-sienna: #B48474;
-    --desert-dusk: #DCBCB0;
+    /* Sara's Desert Palette */
+    --desert-cream: #F5E6D3;
+    --desert-ochre: #C4A86C;
+    --desert-peach: #DBA07A;
+    --desert-terracotta: #C17A5E;
+    --desert-sage: #7A8B6A;
+    --desert-mauve: #9A7B7B;
+    /* Page title color */
+    --title-green: #3D5A4C;
 }
 
 body {
@@ -110,9 +95,9 @@ body {
     padding-top: 8rem;
     background: linear-gradient(
         180deg,
-        #E8D8C8 0%,
-        #D4B8A8 50%,
-        #C49080 100%
+        var(--desert-cream) 0%,
+        var(--desert-peach) 50%,
+        var(--desert-terracotta) 100%
     );
     background-attachment: fixed;
     background-size: cover;
@@ -124,7 +109,7 @@ body {
 .content-page h1 {
     text-align: center;
     font-size: 3rem;
-    color: #3D5A4C;
+    color: var(--desert-sage);
     margin-bottom: 3rem;
     font-weight: 400;
 }
@@ -863,7 +848,7 @@ footer p {
 
 .faq-section h2 {
     font-size: 2rem;
-    color: #333;
+    color: var(--desert-sage);
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid rgba(255, 255, 255, 0.5);
@@ -897,7 +882,7 @@ footer p {
 
 .price-indicator {
     font-size: 0.9rem;
-    color: var(--adobe-dark);
+    color: var(--desert-ochre);
     font-weight: 400;
     margin-left: 0.5rem;
 }
@@ -945,7 +930,7 @@ footer p {
     color: var(--text-dark);
     line-height: 1.7;
     padding-top: 1rem;
-    border-top: 1px solid rgba(139, 115, 85, 0.2);
+    border-top: 1px solid var(--desert-peach);
 }
 
 .faq-card p {
@@ -964,24 +949,24 @@ footer p {
 }
 
 .highlight-card {
-    border-left: 4px solid var(--primary-color);
-    background: linear-gradient(135deg, var(--white) 0%, rgba(147, 233, 190, 0.1) 100%);
+    border-left: 4px solid var(--desert-ochre);
+    background: linear-gradient(135deg, var(--white) 0%, rgba(196, 168, 108, 0.1) 100%);
 }
 
 .faq-link {
     display: inline-block;
-    color: var(--adobe-dark);
+    color: var(--desert-terracotta);
     font-weight: 600;
     text-decoration: none;
     padding: 0.5rem 1rem;
-    background: var(--adobe-cream);
+    background: var(--desert-cream);
     border-radius: 25px;
     transition: all 0.3s ease;
     margin-top: 0.5rem;
 }
 
 .faq-link:hover {
-    background: var(--adobe-dark);
+    background: var(--desert-terracotta);
     color: var(--white);
 }
 
@@ -1004,7 +989,7 @@ footer p {
 }
 
 .rec-item h4 {
-    color: var(--adobe-dark);
+    color: var(--desert-terracotta);
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
 }

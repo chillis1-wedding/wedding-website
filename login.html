@@ -584,8 +584,13 @@
                     container.appendChild(confetti);
                 }
 
-                // Redirect immediately
-                window.location.href = 'index.html';
+                // Trigger the confetti explosion
+                document.getElementById('kaiTransition').classList.add('active');
+
+                // Quick redirect - just enough to see the confetti burst
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 400);
             } else {
                 // Show error
                 input.classList.add('error');

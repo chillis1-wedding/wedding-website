@@ -514,10 +514,10 @@
                 // Add success glow to login box
                 document.getElementById('loginPage').classList.add('success');
 
-                // Generate thousands of confetti pieces!
+                // Generate tons of confetti pieces!
                 const container = document.getElementById('confettiContainer');
                 const colors = ['c-cream', 'c-ochre', 'c-peach', 'c-terracotta', 'c-sage', 'c-mauve'];
-                const confettiCount = 1000;
+                const confettiCount = 10000;
 
                 for (let i = 0; i < confettiCount; i++) {
                     const confetti = document.createElement('div');
@@ -549,10 +549,10 @@
                 // Trigger the confetti explosion
                 document.getElementById('kaiTransition').classList.add('active');
 
-                // Quick redirect - just enough to see the confetti burst
+                // Redirect after seeing the confetti burst
                 setTimeout(() => {
                     window.location.href = 'index.html';
-                }, 400);
+                }, 800);
             } else {
                 // Show error
                 input.classList.add('error');

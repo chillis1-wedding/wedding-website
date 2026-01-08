@@ -226,12 +226,12 @@ body:has(.content-page) .main-nav {
 .sara-name {
     font-family: 'Pacifico', cursive;
     font-size: 6rem;
-    color: #93E9BE;
+    color: #C17A5E;
     text-shadow:
-        3px 3px 0px #ffd700,
-        6px 6px 0px #ff1493,
-        9px 9px 0px #93E9BE,
-        12px 12px 0px #7fff00;
+        3px 3px 0px #d4a088,
+        6px 6px 0px #dba07a,
+        9px 9px 0px #e8c4b8,
+        12px 12px 0px #c4a86c;
     transform: rotate(-5deg);
     display: inline-block;
     animation: crazy-bounce 2s infinite;
@@ -257,12 +257,12 @@ body:has(.content-page) .main-nav {
 .willis-name {
     font-family: 'Pacifico', cursive;
     font-size: 6rem;
-    color: #40E0D0;
+    color: #3D5A4C;
     text-shadow:
-        3px 3px 0px #FF6B35,
-        6px 6px 0px #C2654A,
-        9px 9px 0px #8B4513,
-        12px 12px 0px #2F4F4F;
+        3px 3px 0px #4a7c59,
+        6px 6px 0px #6b9b7a,
+        9px 9px 0px #93E9BE,
+        12px 12px 0px #b8d4c8;
     transform: rotate(5deg);
     display: inline-block;
     animation: desert-bounce 2.5s infinite;
@@ -280,8 +280,8 @@ body:has(.content-page) .main-nav {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 8px solid #93E9BE;
-    box-shadow: 0 0 30px rgba(147, 233, 190, 0.8);
+    border: 8px solid #C17A5E;
+    box-shadow: 0 0 30px rgba(193, 122, 94, 0.8);
     object-fit: cover;
     animation: float-around 15s infinite ease-in-out;
     z-index: 10;
@@ -321,8 +321,8 @@ body:has(.content-page) .main-nav {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 8px solid #40E0D0;
-    box-shadow: 0 0 30px rgba(64, 224, 208, 0.6), 0 0 60px rgba(255, 107, 53, 0.4);
+    border: 8px solid #3D5A4C;
+    box-shadow: 0 0 30px rgba(61, 90, 76, 0.6), 0 0 60px rgba(107, 155, 122, 0.4);
     object-fit: cover;
     object-position: center 20%;
     animation: float-around-willis 18s infinite ease-in-out;

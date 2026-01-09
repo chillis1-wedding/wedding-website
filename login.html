@@ -417,7 +417,6 @@
     </div>
 
     <script>
-        const PASSWORD = 'kai';
         const STORAGE_KEY = 'sara_willis_wedding_auth';
 
         // Check if already authenticated
@@ -425,36 +424,56 @@
             window.location.href = 'index.html';
         }
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const input = document.getElementById('password');
             const errorMsg = document.getElementById('errorMsg');
-            const enteredPassword = input.value.toLowerCase().trim();
+            const submitBtn = document.querySelector('.enter-btn');
 
-            if (enteredPassword === PASSWORD) {
-                // Store authentication and redirect immediately
-                sessionStorage.setItem(STORAGE_KEY, 'true');
-                window.location.href = 'index.html';
-            } else {
-                // Show error
-                input.classList.add('error');
+            // Disable button while checking
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Checking...';
+
+            try {
+                const response = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: input.value })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Store authentication and redirect
+                    sessionStorage.setItem(STORAGE_KEY, 'true');
+                    window.location.href = 'index.html';
+                } else {
+                    // Show error
+                    input.classList.add('error');
+                    errorMsg.classList.add('show');
+
+                    setTimeout(() => {
+                        input.classList.remove('error');
+                    }, 500);
+
+                    input.value = '';
+                    input.focus();
+                }
+            } catch (error) {
+                console.error('Auth error:', error);
+                errorMsg.textContent = 'Something went wrong. Try again!';
                 errorMsg.classList.add('show');
-
-                // Reset after animation
-                setTimeout(() => {
-                    input.classList.remove('error');
-                }, 500);
-
-                // Clear input
-                input.value = '';
-                input.focus();
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enter';
             }
         });
 
         // Clear error when typing
         document.getElementById('password').addEventListener('input', function() {
             document.getElementById('errorMsg').classList.remove('show');
+            document.getElementById('errorMsg').textContent = "WOOF! That's not right. Try again!";
         });
     </script>
 </body>

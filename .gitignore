@@ -19,3 +19,6 @@ npm-debug.log*
 .vscode/
 .idea/
 photos/*.jpg
+
+# Local Claude Code notes (not for GitHub)
+CLAUDE.md

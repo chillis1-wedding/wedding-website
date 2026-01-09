@@ -48,8 +48,16 @@ YOUR STYLE:
 - Encourage folks to RSVP when appropriate`;
 
 module.exports = async (req, res) => {
-    // Handle CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    // Handle CORS - restrict to our Vercel domain
+    const allowedOrigins = [
+        'https://wedding-website-nine-pink.vercel.app',
+        'http://localhost:8000',
+        'http://localhost:3000'
+    ];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

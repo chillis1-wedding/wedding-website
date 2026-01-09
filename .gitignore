@@ -21,4 +21,4 @@ npm-debug.log*
 photos/*.jpg
 
 # Local Claude Code notes (not for GitHub)
-CLAUDE.md
+.claude-local.md

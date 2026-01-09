@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
         }
 
         // Password is stored securely in Vercel environment variables
-        const correctPassword = (process.env.WEDDING_PASSWORD || 'kai').toLowerCase();
+        const correctPassword = (process.env.WEDDING_PASSWORD || 'default').toLowerCase();
         const isCorrect = password.toLowerCase().trim() === correctPassword;
 
         res.json({ success: isCorrect });

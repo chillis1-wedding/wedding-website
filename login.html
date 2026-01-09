@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sara & Willis - Enter</title>
-    <link rel="icon" type="image/png" href="kai_no_background.png">
+    <link rel="icon" type="image/png" href="pup.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Varela+Round&display=swap" rel="stylesheet">
@@ -22,8 +22,8 @@
             overflow: hidden;
         }
 
-        /* STAR WARS STYLE - Kais flying past! */
-        .floating-kai {
+        /* STAR WARS STYLE - Pups flying past! */
+        .floating-pup {
             position: absolute;
             object-fit: contain;
             z-index: 0;
@@ -31,45 +31,45 @@
             pointer-events: none;
         }
 
-        /* Each Kai starts tiny in center and zooms out in different directions */
-        .kai-1 {
+        /* Each pup starts tiny in center and zooms out in different directions */
+        .pup-1 {
             top: 50%;
             left: 50%;
-            animation: kai-zoom-topleft 4s linear infinite;
+            animation: pup-zoom-topleft 4s linear infinite;
         }
-        .kai-2 {
+        .pup-2 {
             top: 50%;
             left: 50%;
-            animation: kai-zoom-topright 5s linear infinite 0.7s;
+            animation: pup-zoom-topright 5s linear infinite 0.7s;
         }
-        .kai-3 {
+        .pup-3 {
             top: 50%;
             left: 50%;
-            animation: kai-zoom-left 3.5s linear infinite 1.4s;
+            animation: pup-zoom-left 3.5s linear infinite 1.4s;
         }
-        .kai-4 {
+        .pup-4 {
             top: 50%;
             left: 50%;
-            animation: kai-zoom-right 4.5s linear infinite 2.1s;
+            animation: pup-zoom-right 4.5s linear infinite 2.1s;
         }
-        .kai-5 {
+        .pup-5 {
             top: 50%;
             left: 50%;
-            animation: kai-zoom-bottomleft 3.8s linear infinite 2.8s;
+            animation: pup-zoom-bottomleft 3.8s linear infinite 2.8s;
         }
-        .kai-6 {
+        .pup-6 {
             top: 50%;
             left: 50%;
-            animation: kai-zoom-bottomright 4.2s linear infinite 3.5s;
+            animation: pup-zoom-bottomright 4.2s linear infinite 3.5s;
         }
-        .kai-7 {
+        .pup-7 {
             top: 50%;
             left: 50%;
-            animation: kai-zoom-top 3.2s linear infinite 0.3s;
+            animation: pup-zoom-top 3.2s linear infinite 0.3s;
         }
 
         /* Zoom animations - start tiny at center, zoom past camera */
-        @keyframes kai-zoom-topleft {
+        @keyframes pup-zoom-topleft {
             0% {
                 transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
                 opacity: 0;
@@ -85,7 +85,7 @@
                 opacity: 0;
             }
         }
-        @keyframes kai-zoom-topright {
+        @keyframes pup-zoom-topright {
             0% {
                 transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
                 opacity: 0;
@@ -101,7 +101,7 @@
                 opacity: 0;
             }
         }
-        @keyframes kai-zoom-left {
+        @keyframes pup-zoom-left {
             0% {
                 transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
                 opacity: 0;
@@ -117,7 +117,7 @@
                 opacity: 0;
             }
         }
-        @keyframes kai-zoom-right {
+        @keyframes pup-zoom-right {
             0% {
                 transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
                 opacity: 0;
@@ -133,7 +133,7 @@
                 opacity: 0;
             }
         }
-        @keyframes kai-zoom-bottomleft {
+        @keyframes pup-zoom-bottomleft {
             0% {
                 transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
                 opacity: 0;
@@ -149,7 +149,7 @@
                 opacity: 0;
             }
         }
-        @keyframes kai-zoom-bottomright {
+        @keyframes pup-zoom-bottomright {
             0% {
                 transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
                 opacity: 0;
@@ -165,7 +165,7 @@
                 opacity: 0;
             }
         }
-        @keyframes kai-zoom-top {
+        @keyframes pup-zoom-top {
             0% {
                 transform: translate(-50%, -50%) scale(0.05) rotate(0deg);
                 opacity: 0;
@@ -234,14 +234,14 @@
             font-style: italic;
         }
 
-        .kai-says {
+        .pup-says {
             font-size: 1rem;
             color: #666;
             margin-bottom: 1.5rem;
             font-style: italic;
         }
 
-        .kai-says span {
+        .pup-says span {
             display: inline-block;
             animation: wag 0.5s ease-in-out infinite alternate;
         }
@@ -259,7 +259,7 @@
             gap: 0;
         }
 
-        .static-kai {
+        .static-pup {
             position: absolute;
             right: -120px;
             width: 180px;
@@ -360,14 +360,14 @@
             .login-box {
                 padding: 2rem 1.5rem;
             }
-            .static-kai {
+            .static-pup {
                 right: -80px;
                 width: 120px;
             }
         }
 
         @media (max-width: 480px) {
-            .static-kai {
+            .static-pup {
                 position: relative;
                 right: auto;
                 width: 100px;
@@ -381,14 +381,14 @@
 </head>
 <body>
     <div id="loginPage" class="login-page">
-        <!-- 7 Floating Kais! -->
-        <img src="kai_no_background.png" alt="Kai" class="floating-kai kai-1">
-        <img src="kai_no_background.png" alt="Kai" class="floating-kai kai-2">
-        <img src="kai_no_background.png" alt="Kai" class="floating-kai kai-3">
-        <img src="kai_no_background.png" alt="Kai" class="floating-kai kai-4">
-        <img src="kai_no_background.png" alt="Kai" class="floating-kai kai-5">
-        <img src="kai_no_background.png" alt="Kai" class="floating-kai kai-6">
-        <img src="kai_no_background.png" alt="Kai" class="floating-kai kai-7">
+        <!-- 7 Floating Pups! -->
+        <img src="pup.png" alt="Pup" class="floating-pup pup-1">
+        <img src="pup.png" alt="Pup" class="floating-pup pup-2">
+        <img src="pup.png" alt="Pup" class="floating-pup pup-3">
+        <img src="pup.png" alt="Pup" class="floating-pup pup-4">
+        <img src="pup.png" alt="Pup" class="floating-pup pup-5">
+        <img src="pup.png" alt="Pup" class="floating-pup pup-6">
+        <img src="pup.png" alt="Pup" class="floating-pup pup-7">
 
         <div class="login-container">
             <h1 class="login-title">
@@ -412,7 +412,7 @@
 
                     <p id="errorMsg" class="error-message">WOOF! That's not right. Try again!</p>
                 </div>
-                <img src="kai_no_background.png" alt="Kai guarding the door" class="static-kai">
+                <img src="pup.png" alt="Pup guarding the door" class="static-pup">
             </div>
         </div>
     </div>

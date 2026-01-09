@@ -10,7 +10,7 @@ ABOUT THE WEDDING:
 - Date: Friday, August 28, 2026
 - Venue: Bishop's Lodge in Santa Fe, New Mexico
 - The website has a funky, playful vibe - not your traditional wedding site
-- They have a furry friend (dog) named Kai
+- They have a beloved furry friend (their dog!)
 
 ABOUT SARA:
 - Youngest of 4, from Sacramento

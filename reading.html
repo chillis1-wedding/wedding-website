@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summer Reading List - Sara & Willis</title>
+    <link rel="icon" type="image/png" href="kai_no_background.png">
     <script src="auth.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,5 +74,21 @@
 
         </div>
     </section>
+
+    <button class="back-to-top" id="backToTop">↑ Back to Top</button>
+
+    <script>
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>

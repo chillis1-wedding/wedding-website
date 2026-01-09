@@ -1414,3 +1414,43 @@ footer p {
         opacity: 0.6;
     }
 }
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: var(--desert-sage);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Varela Round', sans-serif;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: var(--desert-terracotta);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 20px;
+        left: 20px;
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+}

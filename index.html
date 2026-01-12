@@ -40,6 +40,12 @@
         </div>
     </header>
 
+    <!-- Countdown Badge -->
+    <div class="countdown-badge" id="countdown-badge">
+        <span class="countdown-number" id="countdown-days"></span>
+        <span class="countdown-label">days</span>
+    </div>
+
     <!-- Chatbot Widget -->
     <div id="chatbot-container" class="chatbot-container">
         <button id="chatbot-toggle" class="chatbot-toggle">
@@ -82,5 +88,71 @@
 
     <script src="chatbot.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>
+
+    <!-- Countdown Calculator with DVD Bounce -->
+    <script>
+        (function() {
+            const weddingDate = new Date('2026-08-28T00:00:00');
+            const countdownEl = document.getElementById('countdown-days');
+            const badge = document.getElementById('countdown-badge');
+
+            // Update countdown
+            function updateCountdown() {
+                const now = new Date();
+                const diff = weddingDate - now;
+                const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                if (countdownEl) countdownEl.textContent = days;
+            }
+            updateCountdown();
+            setInterval(updateCountdown, 60000);
+
+            // DVD Screensaver bounce
+            if (badge) {
+                let x = 50, y = 100;
+                let vx = 0.8, vy = 0.6; // Slow speed
+                const speed = 1.2; // Pixels per frame
+
+                function animate() {
+                    const badgeRect = badge.getBoundingClientRect();
+                    const w = badgeRect.width;
+                    const h = badgeRect.height;
+                    const maxX = window.innerWidth - w;
+                    const maxY = window.innerHeight - h;
+
+                    x += vx * speed;
+                    y += vy * speed;
+
+                    let hitCorner = false;
+                    let hitWall = false;
+
+                    // Bounce off edges
+                    if (x <= 0) { x = 0; vx = Math.abs(vx); hitWall = true; }
+                    if (x >= maxX) { x = maxX; vx = -Math.abs(vx); hitWall = true; }
+                    if (y <= 0) { y = 0; vy = Math.abs(vy); hitWall = true; }
+                    if (y >= maxY) { y = maxY; vy = -Math.abs(vy); hitWall = true; }
+
+                    // Check for corner hit (within 5px of corner)
+                    const cornerThreshold = 5;
+                    if ((x <= cornerThreshold || x >= maxX - cornerThreshold) &&
+                        (y <= cornerThreshold || y >= maxY - cornerThreshold)) {
+                        hitCorner = true;
+                    }
+
+                    if (hitCorner) {
+                        badge.classList.add('corner-hit');
+                        setTimeout(() => badge.classList.remove('corner-hit'), 500);
+                    }
+
+                    badge.style.left = x + 'px';
+                    badge.style.top = y + 'px';
+
+                    requestAnimationFrame(animate);
+                }
+
+                // Start after a brief delay
+                setTimeout(() => requestAnimationFrame(animate), 500);
+            }
+        })();
+    </script>
 </body>
 </html>

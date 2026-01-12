@@ -1212,9 +1212,9 @@ footer p {
     .sara-name {
         font-size: clamp(2rem, 11vw, 2.8rem);
         text-shadow:
-            2px 2px 0px #ffd700,
-            4px 4px 0px #ff1493,
-            6px 6px 0px #93E9BE;
+            2px 2px 0px #d4a088,
+            4px 4px 0px #dba07a,
+            6px 6px 0px #c4a86c;
     }
 
     .willis-name {

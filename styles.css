@@ -291,6 +291,12 @@ body:has(.content-page) .main-nav {
     animation: float-around-sara 15s infinite ease-in-out;
     z-index: 10;
     transform-origin: center;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.floating-sara:hover {
+    box-shadow: 0 0 50px rgba(193, 122, 94, 1);
 }
 
 @keyframes float-around {
@@ -361,6 +367,12 @@ body:has(.content-page) .main-nav {
     animation: float-around-willis 18s infinite ease-in-out;
     z-index: 10;
     transform-origin: center;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.floating-willis:hover {
+    box-shadow: 0 0 50px rgba(61, 90, 76, 1), 0 0 80px rgba(107, 155, 122, 0.6);
 }
 
 @keyframes float-around-willis {

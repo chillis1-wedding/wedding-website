@@ -28,8 +28,8 @@
     </nav>
 
     <header class="hero hero-fullscreen">
-        <img src="sara_floating_head.webp" alt="Sara" class="floating-sara">
-        <img src="willis_photo.webp" alt="Willis" class="floating-willis">
+        <img src="sara_floating_head.webp" alt="Sara as a kid" class="floating-sara" onclick="openPhotoLightbox(this.src, 'Sara')">
+        <img src="willis_photo.webp" alt="Willis as a kid" class="floating-willis" onclick="openPhotoLightbox(this.src, 'Willis')">
         <div class="hero-content">
             <h1><span class="sara-name">Sara</span> <span class="plus-sign">+</span> <span class="willis-name">Willis</span></h1>
                         <div class="date">
@@ -85,6 +85,90 @@
             </div>
         </div>
     </div>
+
+    <!-- Photo Lightbox -->
+    <div id="photo-lightbox" class="photo-lightbox" onclick="closePhotoLightbox()">
+        <button class="photo-lightbox-close" aria-label="Close">&times;</button>
+        <img id="photo-lightbox-img" src="" alt="">
+        <div class="photo-lightbox-caption" id="photo-lightbox-caption"></div>
+    </div>
+
+    <style>
+        .photo-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .photo-lightbox.active {
+            display: flex;
+        }
+        .photo-lightbox img {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+        .photo-lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .photo-lightbox-close:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .photo-lightbox-caption {
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .photo-lightbox-close {
+                top: 15px;
+                right: 15px;
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+
+    <script>
+        function openPhotoLightbox(src, name) {
+            event.stopPropagation();
+            const lightbox = document.getElementById('photo-lightbox');
+            const img = document.getElementById('photo-lightbox-img');
+            const caption = document.getElementById('photo-lightbox-caption');
+            img.src = src;
+            caption.textContent = name;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closePhotoLightbox() {
+            const lightbox = document.getElementById('photo-lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePhotoLightbox();
+        });
+    </script>
 
     <script src="chatbot.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>

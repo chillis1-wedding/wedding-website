@@ -27,6 +27,7 @@ body {
     font-family: 'Varela Round', sans-serif;
     color: var(--text-dark);
     line-height: 1.6;
+    background: #1a1a1a;
 }
 
 /* Navigation */
@@ -155,6 +156,7 @@ body:has(.content-page) .main-nav {
 /* Hero Section - Custom Background */
 .hero {
     min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -179,7 +181,9 @@ body:has(.content-page) .main-nav {
 
 .hero-fullscreen {
     height: 100vh;
+    height: 100dvh;
     min-height: 100vh;
+    min-height: 100dvh;
 }
 
 /* Dark overlay for text readability */

@@ -510,4 +510,47 @@ body:has(.projector-section) {
     .lightbox-close {
         font-size: 2rem;
     }
+
+    .lightbox-content {
+        max-width: 95vw;
+        max-height: 80vh;
+    }
+
+    .lightbox-content img {
+        max-height: 75vh;
+        border-radius: 4px;
+    }
+
+    .lightbox-counter {
+        bottom: 15px;
+        font-size: 0.85rem;
+        padding: 6px 16px;
+    }
+}
+
+/* Touch hint for mobile - indicate tappable */
+@media (hover: none) and (pointer: coarse) {
+    .slide.active {
+        cursor: pointer;
+    }
+
+    .slide.active::after {
+        content: '';
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 2px;
+        opacity: 0;
+        animation: tap-hint 2s ease-in-out infinite;
+        animation-delay: 1s;
+    }
+
+    @keyframes tap-hint {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 0.6; }
+    }
 }

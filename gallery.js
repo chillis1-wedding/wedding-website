@@ -248,6 +248,32 @@ function initLightboxClick() {
     });
 }
 
+// Lightbox touch/swipe support
+let lightboxTouchStartX = 0;
+let lightboxTouchEndX = 0;
+
+lightbox.addEventListener('touchstart', (e) => {
+    lightboxTouchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+lightbox.addEventListener('touchend', (e) => {
+    lightboxTouchEndX = e.changedTouches[0].screenX;
+    handleLightboxSwipe();
+}, { passive: true });
+
+function handleLightboxSwipe() {
+    const swipeThreshold = 50;
+    const diff = lightboxTouchEndX - lightboxTouchStartX;
+
+    if (diff < -swipeThreshold) {
+        // Swiped left - show next
+        lightboxShowNext();
+    } else if (diff > swipeThreshold) {
+        // Swiped right - show previous
+        lightboxShowPrev();
+    }
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initGallery();

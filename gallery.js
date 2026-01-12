@@ -15,7 +15,12 @@ const photos = [
     'photos/compressed/11_china.webp',
     'photos/compressed/12_spruce.webp',
     'photos/compressed/13_views.webp',
-    'photos/compressed/14_bryce.webp'
+    'photos/compressed/14_bryce.webp',
+    'photos/compressed/15_bluff.webp',
+    'photos/compressed/16_lost.webp',
+    'photos/compressed/17_ocean.webp',
+    'photos/compressed/18_taos.webp',
+    'photos/compressed/19_westpoint.webp'
 ];
 
 let currentIndex = 0;

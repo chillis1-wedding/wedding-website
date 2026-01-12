@@ -12,21 +12,24 @@ Wedding website for **Sara & Willis** - newly engaged couple!
 
 ## 🎨 Current Design Features
 
-### Color Scheme
-- **Primary Color:** #93E9BE (Sara's favorite Sea Foam)
-- **Secondary Color:** #8b7355 (Brown/tan)
-- Uses Sea Foam throughout: buttons, accents, photo borders, text shadows, background gradients
+### Color Scheme (Desert Palette)
+- **Desert Cream:** #F5E6D3
+- **Desert Ochre:** #C4A86C
+- **Desert Peach:** #DBA07A
+- **Desert Terracotta:** #C17A5E
+- **Desert Sage:** #7A8B6A
+- **Title Green:** #3D5A4C
 
 ### Goofy/Fun Elements
 1. **Sara's Name Animation:**
    - Crazy bouncing Pacifico font
-   - Rainbow text shadows (gold, pink, sea foam, lime green)
+   - Rainbow text shadows
    - Rotates and bounces continuously
    - Way bigger than Willis's name (6rem vs 5rem)
 
 2. **Floating Photo:**
    - Sara.jpg floats around the hero section
-   - Circular frame with sea foam border and glow
+   - Circular frame with desert-themed border and glow
    - Spins and moves all over the screen (15-second loop)
    - Scales up and down as it moves
 
@@ -142,7 +145,7 @@ git push
 ## 💡 Design Notes
 - Keep the funky, playful vibe throughout
 - Don't be afraid to add more weird animations or fun elements
-- Sea Foam (#93E9BE) should remain the hero color
+- Desert color palette should be used consistently
 - Balance goofy elements with readability/usability
 - Mobile responsiveness is already handled
 

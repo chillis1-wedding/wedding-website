@@ -888,6 +888,20 @@ footer p {
     color: var(--text-light);
     margin-bottom: 1.5rem;
     font-style: italic;
+    background: linear-gradient(135deg, rgba(147, 233, 190, 0.15), rgba(219, 160, 122, 0.15));
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--desert-peach);
+    animation: subtle-pulse 3s ease-in-out infinite;
+}
+
+@keyframes subtle-pulse {
+    0%, 100% {
+        box-shadow: 0 2px 8px rgba(219, 160, 122, 0.2);
+    }
+    50% {
+        box-shadow: 0 4px 16px rgba(219, 160, 122, 0.35);
+    }
 }
 
 .faq-card {

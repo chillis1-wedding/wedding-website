@@ -353,6 +353,7 @@
         @media (max-width: 768px) {
             .login-title {
                 font-size: 2.5rem;
+                white-space: nowrap;
             }
             .login-title .amp {
                 font-size: 2rem;
@@ -367,6 +368,14 @@
         }
 
         @media (max-width: 480px) {
+            .login-title {
+                font-size: 2rem;
+                white-space: nowrap;
+            }
+            .login-title .amp {
+                font-size: 1.5rem;
+                margin: 0 0.3rem;
+            }
             .static-pup {
                 position: relative;
                 right: auto;
@@ -375,6 +384,15 @@
             }
             .login-box-wrapper {
                 flex-direction: column;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .login-title {
+                font-size: 1.7rem;
+            }
+            .login-title .amp {
+                font-size: 1.3rem;
             }
         }
     </style>

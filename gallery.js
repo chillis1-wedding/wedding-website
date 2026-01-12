@@ -41,7 +41,7 @@ function initGallery() {
 
     prevButton.addEventListener('click', showPrevious);
     nextButton.addEventListener('click', showNext);
-    slideStack.addEventListener('click', showNext);
+    // Removed slideStack click to advance - now handled by lightbox
 
     // Keyboard navigation
     document.addEventListener('keydown', handleKeyPress);
@@ -172,5 +172,84 @@ function handleKeyPress(e) {
     }
 }
 
+// Lightbox functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCurrentSpan = document.getElementById('lightbox-current');
+const lightboxTotalSpan = document.getElementById('lightbox-total');
+const lightboxClose = document.querySelector('.lightbox-close');
+const lightboxPrev = document.querySelector('.lightbox-prev');
+const lightboxNext = document.querySelector('.lightbox-next');
+
+let lightboxIndex = 0;
+
+function openLightbox(index) {
+    lightboxIndex = index;
+    lightboxImg.src = photos[lightboxIndex];
+    lightboxCurrentSpan.textContent = lightboxIndex + 1;
+    lightboxTotalSpan.textContent = photos.length;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function lightboxShowNext() {
+    lightboxIndex = (lightboxIndex + 1) % photos.length;
+    lightboxImg.src = photos[lightboxIndex];
+    lightboxCurrentSpan.textContent = lightboxIndex + 1;
+}
+
+function lightboxShowPrev() {
+    lightboxIndex = (lightboxIndex - 1 + photos.length) % photos.length;
+    lightboxImg.src = photos[lightboxIndex];
+    lightboxCurrentSpan.textContent = lightboxIndex + 1;
+}
+
+// Lightbox event listeners
+lightboxClose.addEventListener('click', closeLightbox);
+lightboxNext.addEventListener('click', lightboxShowNext);
+lightboxPrev.addEventListener('click', lightboxShowPrev);
+
+// Close on background click
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+        closeLightbox();
+    }
+});
+
+// Lightbox keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+        closeLightbox();
+    } else if (e.key === 'ArrowRight') {
+        lightboxShowNext();
+    } else if (e.key === 'ArrowLeft') {
+        lightboxShowPrev();
+    }
+});
+
+// Open lightbox on slide click (modify existing click behavior)
+function initLightboxClick() {
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach((slide, index) => {
+        slide.addEventListener('click', (e) => {
+            // Only open lightbox if clicking on active slide
+            if (slide.classList.contains('active')) {
+                e.stopPropagation();
+                openLightbox(index);
+            }
+        });
+    });
+}
+
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initGallery);
+document.addEventListener('DOMContentLoaded', () => {
+    initGallery();
+    initLightboxClick();
+});

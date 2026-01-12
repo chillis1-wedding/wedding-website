@@ -76,32 +76,38 @@ function generateSlides() {
     });
 }
 
-// Update slide states - stacking effect with slivers on both sides
+// Update slide states - stacking effect with slivers on both sides (circular)
 function updateSlideStates() {
     const slides = document.querySelectorAll('.slide');
+    const total = photos.length;
 
     slides.forEach((slide, index) => {
         // Remove all state classes
         slide.classList.remove('active', 'stack-1', 'stack-2', 'stack-3', 'prev-1', 'prev-2', 'prev-3', 'hidden', 'exiting', 'entering');
 
-        const diff = index - currentIndex;
+        // Calculate circular distance
+        let diff = index - currentIndex;
+
+        // Wrap around for circular effect
+        if (diff > total / 2) diff -= total;
+        if (diff < -total / 2) diff += total;
 
         if (diff === 0) {
             // Current slide - front
             slide.classList.add('active');
-        } else if (diff === 1) {
+        } else if (diff === 1 || (currentIndex === total - 1 && index === 0)) {
             // Next slide - peeking on right
             slide.classList.add('stack-1');
-        } else if (diff === 2) {
+        } else if (diff === 2 || (currentIndex === total - 1 && index === 1) || (currentIndex === total - 2 && index === 0)) {
             slide.classList.add('stack-2');
-        } else if (diff === 3) {
+        } else if (diff === 3 || (currentIndex === total - 1 && index === 2) || (currentIndex === total - 2 && index === 1) || (currentIndex === total - 3 && index === 0)) {
             slide.classList.add('stack-3');
-        } else if (diff === -1) {
+        } else if (diff === -1 || (currentIndex === 0 && index === total - 1)) {
             // Previous slide - peeking on left
             slide.classList.add('prev-1');
-        } else if (diff === -2) {
+        } else if (diff === -2 || (currentIndex === 0 && index === total - 2) || (currentIndex === 1 && index === total - 1)) {
             slide.classList.add('prev-2');
-        } else if (diff === -3) {
+        } else if (diff === -3 || (currentIndex === 0 && index === total - 3) || (currentIndex === 1 && index === total - 2) || (currentIndex === 2 && index === total - 1)) {
             slide.classList.add('prev-3');
         } else {
             // Far away - hidden

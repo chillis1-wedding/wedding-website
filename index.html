@@ -46,6 +46,12 @@
         <span class="countdown-label">days</span>
     </div>
 
+    <!-- Hours Countdown Badge -->
+    <div class="countdown-badge countdown-badge-hours" id="countdown-badge-hours">
+        <span class="countdown-number" id="countdown-hours"></span>
+        <span class="countdown-label">hours</span>
+    </div>
+
     <!-- Chatbot Widget -->
     <div id="chatbot-container" class="chatbot-container">
         <button id="chatbot-toggle" class="chatbot-toggle">
@@ -178,23 +184,27 @@
         (function() {
             const weddingDate = new Date('2026-08-28T00:00:00');
             const countdownEl = document.getElementById('countdown-days');
+            const countdownHoursEl = document.getElementById('countdown-hours');
             const badge = document.getElementById('countdown-badge');
+            const badgeHours = document.getElementById('countdown-badge-hours');
 
             // Update countdown
             function updateCountdown() {
                 const now = new Date();
                 const diff = weddingDate - now;
                 const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.ceil(diff / (1000 * 60 * 60));
                 if (countdownEl) countdownEl.textContent = days;
+                if (countdownHoursEl) countdownHoursEl.textContent = hours.toLocaleString();
             }
             updateCountdown();
             setInterval(updateCountdown, 60000);
 
-            // DVD Screensaver bounce
+            // DVD Screensaver bounce for days badge
             if (badge) {
                 let x = 50, y = 100;
-                let vx = 0.8, vy = 0.6; // Slow speed
-                const speed = 1.2; // Pixels per frame
+                let vx = 0.8, vy = 0.6;
+                const speed = 1.2;
 
                 function animate() {
                     const badgeRect = badge.getBoundingClientRect();
@@ -207,15 +217,12 @@
                     y += vy * speed;
 
                     let hitCorner = false;
-                    let hitWall = false;
 
-                    // Bounce off edges
-                    if (x <= 0) { x = 0; vx = Math.abs(vx); hitWall = true; }
-                    if (x >= maxX) { x = maxX; vx = -Math.abs(vx); hitWall = true; }
-                    if (y <= 0) { y = 0; vy = Math.abs(vy); hitWall = true; }
-                    if (y >= maxY) { y = maxY; vy = -Math.abs(vy); hitWall = true; }
+                    if (x <= 0) { x = 0; vx = Math.abs(vx); }
+                    if (x >= maxX) { x = maxX; vx = -Math.abs(vx); }
+                    if (y <= 0) { y = 0; vy = Math.abs(vy); }
+                    if (y >= maxY) { y = maxY; vy = -Math.abs(vy); }
 
-                    // Check for corner hit (within 5px of corner)
                     const cornerThreshold = 5;
                     if ((x <= cornerThreshold || x >= maxX - cornerThreshold) &&
                         (y <= cornerThreshold || y >= maxY - cornerThreshold)) {
@@ -233,8 +240,50 @@
                     requestAnimationFrame(animate);
                 }
 
-                // Start after a brief delay
                 setTimeout(() => requestAnimationFrame(animate), 500);
+            }
+
+            // DVD Screensaver bounce for hours badge (different starting position & angle)
+            if (badgeHours) {
+                let x2 = window.innerWidth - 150, y2 = 200;
+                let vx2 = -0.7, vy2 = 0.9;
+                const speed2 = 1.2;
+
+                function animateHours() {
+                    const badgeRect = badgeHours.getBoundingClientRect();
+                    const w = badgeRect.width;
+                    const h = badgeRect.height;
+                    const maxX = window.innerWidth - w;
+                    const maxY = window.innerHeight - h;
+
+                    x2 += vx2 * speed2;
+                    y2 += vy2 * speed2;
+
+                    let hitCorner = false;
+
+                    if (x2 <= 0) { x2 = 0; vx2 = Math.abs(vx2); }
+                    if (x2 >= maxX) { x2 = maxX; vx2 = -Math.abs(vx2); }
+                    if (y2 <= 0) { y2 = 0; vy2 = Math.abs(vy2); }
+                    if (y2 >= maxY) { y2 = maxY; vy2 = -Math.abs(vy2); }
+
+                    const cornerThreshold = 5;
+                    if ((x2 <= cornerThreshold || x2 >= maxX - cornerThreshold) &&
+                        (y2 <= cornerThreshold || y2 >= maxY - cornerThreshold)) {
+                        hitCorner = true;
+                    }
+
+                    if (hitCorner) {
+                        badgeHours.classList.add('corner-hit');
+                        setTimeout(() => badgeHours.classList.remove('corner-hit'), 500);
+                    }
+
+                    badgeHours.style.left = x2 + 'px';
+                    badgeHours.style.top = y2 + 'px';
+
+                    requestAnimationFrame(animateHours);
+                }
+
+                setTimeout(() => requestAnimationFrame(animateHours), 700);
             }
         })();
     </script>
